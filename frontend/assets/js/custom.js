@@ -21,6 +21,10 @@ $(document).ready(function () {
     view: "service",
     load: "service.html",
   });
+  app.route({
+    view: "propertydetails",
+    load: "propertydetails.html",
+  });
   // run app
   app.run();
 });
