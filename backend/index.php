@@ -3,33 +3,33 @@
 require "vendor/autoload.php";
 
 
-require_once "services/UsersServices.php";
-require_once "services/PropertiesServices.php";
-require_once "services/LocationServices.php";
-require_once "services/AccommodationServices.php";
-require_once "services/ReviewServices.php";
+require_once "rest/services/UsersServices.php";
+require_once "rest/services/PropertiesServices.php";
+require_once "rest/services/ReportsServices.php";
+require_once "rest/services/PropertyImagesServices.php";
+require_once "rest/services/TransactionsServices.php";
 
 
-require_once 'routes/UserRoutes.php';
-require_once 'routes/PropertiesRoutes.php';
-require_once 'routes/LocationRoutes.php';
-require_once 'routes/AccommodationRoutes.php';
-require_once 'routes/ReviewRoutes.php';
+require_once 'rest/routes/UsersRoutes.php';
+require_once 'rest/routes/PropertiesRoutes.php';
+require_once 'rest/routes/ReportsRoutes.php';
+require_once 'rest/routes/PropertyImagesRoutes.php';
+require_once 'rest/routes/TransactionsRoutes.php';
 
 
-require_once "dao/UserDao.class.php";
-require_once "dao/ReviewDao.class.php";
-require_once "dao/LocationDao.class.php";
-require_once "dao/PropertiesDao.class.php";
-require_once "dao/AccommodationDao.class.php";
+require_once "rest/dao/UsersDao.php";
+require_once "rest/dao/PropertiesDao.php";
+require_once "rest/dao/TransactionsDao.php";
+require_once "rest/dao/ReportsDao.php";
+require_once "rest/dao/PropertyImagesDao.php";
 
 
 
-Flight::register("user_service", "UserServices");
-Flight::register("Properties_service", "PropertiesServices");
-Flight::register("location_service", "LocationServices");
-Flight::register("review_service", "ReviewServices");
-Flight::register("accommdation_service", "AccommodationServices");
+Flight::register("users_service", "UsersServices");
+Flight::register("properties_service", "PropertiesServices");
+Flight::register("reports_service", "ReportsServices");
+Flight::register("transactions_service", "TransactionsServices");
+Flight::register("property_images_service", "PropertyImagesServices");
 
 
 Flight::start();

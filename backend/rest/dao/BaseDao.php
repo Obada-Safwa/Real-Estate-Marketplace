@@ -88,6 +88,19 @@ class BaseDao
         $stmt->bindValue(':id', $id); #prevent SQL injection
         $stmt->execute();
     }
-}
 
-$dao = new BaseDao('properties');
+    public function get_all()
+    {
+        $sql = $this->connection->prepare("SELECT * FROM " . $this->table_name);
+        $sql->execute();
+        return $sql->fetchAll();
+    }
+
+    public function get_by_id($id, $id_column_name)
+    {
+        $stmt = "SELECT * FROM " . $this->table_name . " WHERE  ${id_column_name} = :id";
+        $stmt2 = $this->connection->prepare($stmt);
+        $stmt2->execute(array(":id" => $id));
+        return $stmt2->fetchAll();
+    }
+}
