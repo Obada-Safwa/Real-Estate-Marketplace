@@ -1,10 +1,12 @@
 <?php
 
-require_once "BaseDao.class.php";
+require_once "BaseDao.php";
 
-class TransactionsDao extends BaseDao {
+class TransactionsDao extends BaseDao
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct("Transactions");
     }
 }
