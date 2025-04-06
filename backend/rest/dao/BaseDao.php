@@ -87,6 +87,7 @@ class BaseDao
         $stmt = $this->connection->prepare("DELETE FROM " . $this->table_name . " WHERE id = :id");
         $stmt->bindValue(':id', $id); #prevent SQL injection
         $stmt->execute();
+        return "User successfully deleted";
     }
 
     public function get_all()
@@ -98,7 +99,7 @@ class BaseDao
 
     public function get_by_id($id, $id_column_name)
     {
-        $stmt = "SELECT * FROM " . $this->table_name . " WHERE  ${id_column_name} = :id";
+        $stmt = "SELECT * FROM " . $this->table_name . " WHERE  $id_column_name = :id";
         $stmt2 = $this->connection->prepare($stmt);
         $stmt2->execute(array(":id" => $id));
         return $stmt2->fetchAll();
