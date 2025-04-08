@@ -1,6 +1,7 @@
 CREATE DATABASE real_estate_marketplace;
 USE real_estate_marketplace;
 
+
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
