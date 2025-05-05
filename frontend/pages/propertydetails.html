@@ -26,14 +26,17 @@
     />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="frontend/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../frontend/assets/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Template Stylesheet -->
-    <link href="frontend/assets/css/style.css" rel="stylesheet" />
-    <link href="frontend/assets/css/bonus.css" rel="stylesheet" />
-    <link rel="stylesheet" href="frontend/assets/css/property-details.css" />
+    <link href="../../frontend/assets/css/style.css" rel="stylesheet" />
+    <link href="../../frontend/assets/css/bonus.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="../../frontend/assets/css/property-details.css"
+    />
 
-    <link rel="stylesheet" href="frontend/assets/css/jQuerySPApp.css" />
+    <link rel="stylesheet" href="../../frontend/assets/css/jQuerySPApp.css" />
   </head>
 
   <body>
@@ -102,21 +105,21 @@
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img
-              src="frontend/assets/images/banner.jpg"
+              src="../../frontend/assets/images/banner.jpg"
               class="d-block w-100 property-image"
               alt="Property Image 1"
             />
           </div>
           <div class="carousel-item">
             <img
-              src="frontend/assets/images/property2.jpg"
+              src="../../frontend/assets/images/property2.jpg"
               class="d-block w-100 property-image"
               alt="Property Image 2"
             />
           </div>
           <div class="carousel-item">
             <img
-              src="frontend/assets/images/property3.jpg"
+              src="../../frontend/assets/images/property3.jpg"
               class="d-block w-100 property-image"
               alt="Property Image 3"
             />
@@ -264,7 +267,7 @@
 
             <div class="seller-profile">
               <img
-                src="frontend/assets/images/agent.jpg"
+                src="../../frontend/assets/images/agent.jpg"
                 alt="Agent"
                 class="seller-avatar"
               />
@@ -354,7 +357,78 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="frontend/assets/js/spinner.js"></script>
-    <script src="frontend/services/utils.js"></script>
+    <script src="../../frontend/assets/js/spinner.js"></script>
+    <!-- API and Utility Scripts -->
+    <script src="../../frontend/utils/constants.js"></script>
+    <script src="../../frontend/utils/rest_client.js"></script>
+    <script src="../../frontend/services/utils.js"></script>
+    <!-- Property Details Script -->
+    <!-- <script>
+      // This script will help debug any issues
+      document.addEventListener("DOMContentLoaded", function() {
+        console.log("Property details page loaded");
+        
+        // Get property ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const propertyId = urlParams.get('id');
+        
+        console.log("Property ID from URL:", propertyId);
+        
+        if (propertyId) {
+          // Log the API URL being called
+          const apiUrl = Constants.get_api_base_url() + "properties/details/" + propertyId;
+          console.log("API URL:", apiUrl);
+          
+          // Make the API call directly here as a fallback
+          $.ajax({
+            url: apiUrl,
+            type: "GET",
+            success: function(response) {
+              console.log("API Response:", response);
+              
+              // Extract the property object from the response
+              // The API seems to return data with numeric keys
+              let property = null;
+              
+              if (response && typeof response === 'object') {
+                // Check if the response has a direct property with ID
+                if (response.id) {
+                  property = response;
+                } 
+                // Check if response is an array-like object with numeric keys
+                else if (response["0"] && response["0"].id) {
+                  property = response["0"];
+                }
+                // Check if response has nested data
+                else if (response.data && response.data.id) {
+                  property = response.data;
+                }
+              }
+              
+              if (property && property.id) {
+                // Update page title
+                document.title = property.title + " | Real Estate Marketplace";
+                
+                // Update property title
+                const propertyTitle = document.querySelector('.property-title');
+                if (propertyTitle) {
+                  propertyTitle.textContent = property.title;
+                }
+              } else {
+                console.error("Invalid property data structure:", response);
+                alert("Error: Property not found or invalid data format");
+              }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              console.error("Error fetching property details:", jqXHR, textStatus, errorThrown);
+              alert("Error loading property details: " + errorThrown);
+            }
+          });
+        } else {
+          console.error("No property ID found in URL");
+        }
+      });
+    </script> -->
+    <script src="../../frontend/services/property_details_service.js"></script>
   </body>
 </html>

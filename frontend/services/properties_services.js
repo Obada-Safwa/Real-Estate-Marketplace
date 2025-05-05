@@ -167,14 +167,14 @@ var PropertiesServices = {
   // Function to display properties with pagination
   displayProperties: function (propertiesToDisplay, page = 1) {
     displayProperties(propertiesToDisplay, page);
-  }
-  
+  },
+
   // Function to navigate to property details page
   // viewPropertyDetails: function(propertyId) {
   //   // Get the property from session storage
   //   const properties = Utils.get_from_sessionstorage("properties");
   //   const property = properties.find(p => p.id === propertyId);
-    
+
   //   if (property) {
   //     // Navigate to the standalone property details page with the property ID
   //     window.location.href = `property-details.html?id=${propertyId}`;
@@ -200,6 +200,10 @@ function displayProperties(propertiesToDisplay, page) {
   paginatedProperties.forEach((property) => {
     const card = document.createElement("div");
     card.classList.add("box", "mb-4");
+    card.style.cursor = "pointer"; // Add cursor pointer to indicate clickable
+    card.onclick = function () {
+      window.location.href = `frontend/pages/propertydetails.html?id=${property.id}`;
+    };
     card.innerHTML = `
       <div class="top">
         <img
@@ -207,7 +211,7 @@ function displayProperties(propertiesToDisplay, page) {
           alt="Property Image"
         />
         <span>
-          <a href="javascript:void(0)" class="flag-icon" title="Report Property">
+          <a href="javascript:void(0)" class="flag-icon" title="Report Property" onclick="event.stopPropagation()">
             <i class="fas fa-flag"></i>
           </a>
         </span>
@@ -244,7 +248,7 @@ function displayProperties(propertiesToDisplay, page) {
         </div>
       </div>
     `;
-    
+
     cardSelector.appendChild(card);
   });
 }
