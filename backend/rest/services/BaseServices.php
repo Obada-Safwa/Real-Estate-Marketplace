@@ -14,9 +14,9 @@ class BaseServices
         return $this->dao->get_all();
     }
 
-    public function get_by_id($id)
+    public function get_by_id($id, $id_column = "id")
     {
-        return $this->dao->get_by_id($id);
+        return $this->dao->get_by_id($id, $id_column);
     }
 
     public function add($entity)

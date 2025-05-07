@@ -16,6 +16,10 @@ $(document).ready(function () {
   app.route({
     view: "properties",
     load: "properties.html",
+    onCreate: function () {
+      PropertiesServices.filterInit();
+    },
+    onReady: function () {},
   });
   app.route({
     view: "service",
