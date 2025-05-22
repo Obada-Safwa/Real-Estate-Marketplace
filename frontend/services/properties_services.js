@@ -193,6 +193,11 @@ function displayProperties(propertiesToDisplay, page) {
 
   // Clear container if it's the first page
   if (page === 1) {
+    console.log(cardSelector);
+    if (!cardSelector) {
+      currentPage--;
+      return;
+    }
     cardSelector.innerHTML = "";
   }
 

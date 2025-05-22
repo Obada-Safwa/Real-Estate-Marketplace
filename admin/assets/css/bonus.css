@@ -1,0 +1,32 @@
+/* From Uiverse.io by felipesntr */
+.add-property-btn {
+  border: 2px solid #3d3838;
+  background-color: #3d3838;
+  border-radius: 0.9em;
+  cursor: pointer;
+  padding: 0.8em 1.2em 0.8em 1em;
+  transition: all ease-in-out 0.2s;
+  font-size: 16px;
+}
+
+.add-property-btn span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: 600;
+}
+
+.add-property-btn:hover {
+  background-color: #272626;
+}
+
+.footer-bonus {
+  display: flex;
+  justify-content: space-between; /* Creates space between items */
+  align-items: center;
+  color: #fff;
+  font-weight: 600;
+  width: 100%; /* Ensures it stretches fully */
+  padding: 20px; /* Optional: Adds some spacing */
+}

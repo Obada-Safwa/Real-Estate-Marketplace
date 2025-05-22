@@ -221,7 +221,7 @@ Flight::route("GET /properties/details/@id", function ($id) {
         $property['user_details'] = $user;
         // Remove sensitive information
         if ($user) {
-            unset($user['password']);
+            // unset($user['password']);
             $property['user_details'] = $user;
         }
     }

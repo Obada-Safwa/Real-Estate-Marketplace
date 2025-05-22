@@ -1,0 +1,227 @@
+<!-- Dashboard Page -->
+<div class="dashboard-container">
+    <!-- Stats Cards Row -->
+    <div class="row mb-4">
+        <div class="col-md-6 col-xl-3 mb-3">
+            <div class="stats-card primary">
+                <div class="card-title">TOTAL PROPERTIES</div>
+                <div class="card-value" id="totalProperties">145</div>
+                <div class="card-info">
+                    <span class="text-success"><i class="fas fa-arrow-up"></i> 5.2%</span>
+                    <span class="text-muted ms-2">vs last month</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3 mb-3">
+            <div class="stats-card success">
+                <div class="card-title">TOTAL USERS</div>
+                <div class="card-value" id="totalUsers">312</div>
+                <div class="card-info">
+                    <span class="text-success"><i class="fas fa-arrow-up"></i> 8.1%</span>
+                    <span class="text-muted ms-2">vs last month</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3 mb-3">
+            <div class="stats-card warning">
+                <div class="card-title">PENDING APPROVALS</div>
+                <div class="card-value" id="pendingApprovals">8</div>
+                <div class="card-info">
+                    <span class="text-danger"><i class="fas fa-arrow-up"></i> 12.4%</span>
+                    <span class="text-muted ms-2">vs last month</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3 mb-3">
+            <div class="stats-card danger">
+                <div class="card-title">RECENT SALES</div>
+                <div class="card-value" id="recentSales">24</div>
+                <div class="card-info">
+                    <span class="text-success"><i class="fas fa-arrow-up"></i> 3.8%</span>
+                    <span class="text-muted ms-2">vs last month</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="row mb-4">
+        <div class="col-lg-8 mb-4">
+            <div class="card dashboard-card">
+                <div class="card-header-with-actions">
+                    <h5 class="card-title mb-0">Property Listings Over Time</h5>
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="chartTimeRange" data-bs-toggle="dropdown" aria-expanded="false">
+                            This Month
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="chartTimeRange">
+                            <li><a class="dropdown-item" href="#">This Week</a></li>
+                            <li><a class="dropdown-item" href="#">This Month</a></li>
+                            <li><a class="dropdown-item" href="#">This Year</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container" id="propertiesChart">
+                        <p class="text-center text-muted py-5">
+                            <i class="fas fa-chart-line fa-3x mb-3"></i><br>
+                            Chart visualization would appear here<br>
+                            (Integration with Chart.js or similar library)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card dashboard-card">
+                <div class="card-header-with-actions">
+                    <h5 class="card-title mb-0">Property Types</h5>
+                    <div>
+                        <button class="btn btn-sm btn-outline-secondary">
+                            <i class="fas fa-redo-alt"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container" id="propertyTypesChart">
+                        <p class="text-center text-muted py-5">
+                            <i class="fas fa-chart-pie fa-3x mb-3"></i><br>
+                            Pie chart visualization would appear here<br>
+                            (Integration with Chart.js or similar library)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activity and Tasks Row -->
+    <div class="row">
+        <div class="col-lg-7 mb-4">
+            <div class="card dashboard-card">
+                <div class="card-header-with-actions">
+                    <h5 class="card-title mb-0">Recent Activities</h5>
+                    <button class="btn btn-sm btn-primary">View All</button>
+                </div>
+                <div class="card-body">
+                    <div class="activity-list">
+                        <div class="activity-item d-flex align-items-start mb-3">
+                            <div class="activity-avatar bg-light-primary text-primary rounded-circle me-3">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="activity-content flex-grow-1">
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="mb-1 fw-bold">New Property Listed</h6>
+                                    <small class="text-muted">2 hours ago</small>
+                                </div>
+                                <p class="mb-1">Modern Apartment in City Center has been listed by John Doe</p>
+                                <small class="text-muted">Price: $250,000</small>
+                            </div>
+                        </div>
+                        <div class="activity-item d-flex align-items-start mb-3">
+                            <div class="activity-avatar bg-light-success text-success rounded-circle me-3">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="activity-content flex-grow-1">
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="mb-1 fw-bold">New User Registered</h6>
+                                    <small class="text-muted">5 hours ago</small>
+                                </div>
+                                <p class="mb-1">Jane Smith has registered as a new agent</p>
+                                <small class="text-muted">User ID: #3892</small>
+                            </div>
+                        </div>
+                        <div class="activity-item d-flex align-items-start mb-3">
+                            <div class="activity-avatar bg-light-danger text-danger rounded-circle me-3">
+                                <i class="fas fa-comment"></i>
+                            </div>
+                            <div class="activity-content flex-grow-1">
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="mb-1 fw-bold">Property Inquiry</h6>
+                                    <small class="text-muted">8 hours ago</small>
+                                </div>
+                                <p class="mb-1">New inquiry received for Beach House with Ocean View</p>
+                                <small class="text-muted">From: michael@example.com</small>
+                            </div>
+                        </div>
+                        <div class="activity-item d-flex align-items-start">
+                            <div class="activity-avatar bg-light-warning text-warning rounded-circle me-3">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="activity-content flex-grow-1">
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="mb-1 fw-bold">Property Sold</h6>
+                                    <small class="text-muted">1 day ago</small>
+                                </div>
+                                <p class="mb-1">Downtown Condo has been sold for $350,000</p>
+                                <small class="text-muted">Agent: Emily Davis</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 mb-4">
+            <div class="card dashboard-card">
+                <div class="card-header-with-actions">
+                    <h5 class="card-title mb-0">Pending Tasks</h5>
+                    <button class="btn btn-sm btn-primary">Add Task</button>
+                </div>
+                <div class="card-body">
+                    <div class="task-list">
+                        <div class="task-item d-flex align-items-center mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="task1">
+                            </div>
+                            <div class="task-content ms-2 flex-grow-1">
+                                <h6 class="mb-0">Review new property submissions</h6>
+                                <small class="text-muted">Due today</small>
+                            </div>
+                            <span class="badge bg-danger">High</span>
+                        </div>
+                        <div class="task-item d-flex align-items-center mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="task2">
+                            </div>
+                            <div class="task-content ms-2 flex-grow-1">
+                                <h6 class="mb-0">Update feature properties on homepage</h6>
+                                <small class="text-muted">Due tomorrow</small>
+                            </div>
+                            <span class="badge bg-warning">Medium</span>
+                        </div>
+                        <div class="task-item d-flex align-items-center mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="task3">
+                            </div>
+                            <div class="task-content ms-2 flex-grow-1">
+                                <h6 class="mb-0">Follow up with agent applications</h6>
+                                <small class="text-muted">Due May 12</small>
+                            </div>
+                            <span class="badge bg-info">Normal</span>
+                        </div>
+                        <div class="task-item d-flex align-items-center mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="task4">
+                            </div>
+                            <div class="task-content ms-2 flex-grow-1">
+                                <h6 class="mb-0">Prepare monthly sales report</h6>
+                                <small class="text-muted">Due May 15</small>
+                            </div>
+                            <span class="badge bg-warning">Medium</span>
+                        </div>
+                        <div class="task-item d-flex align-items-center">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="task5">
+                            </div>
+                            <div class="task-content ms-2 flex-grow-1">
+                                <h6 class="mb-0">Schedule content updates for blog</h6>
+                                <small class="text-muted">Due May 20</small>
+                            </div>
+                            <span class="badge bg-info">Normal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
