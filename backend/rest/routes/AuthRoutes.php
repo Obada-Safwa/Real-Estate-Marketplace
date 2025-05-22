@@ -50,7 +50,7 @@ Flight::group('/auth', function () {
 
 
         $response = Flight::auth_service()->register($data);
-
+        
         if ($response['success']) {
             Flight::json([
                 'message' => 'User registered successfully',
