@@ -28,7 +28,7 @@ $(document).ready(function () {
     },
     onReady: function () {
       console.log("Properties view loaded");
-      loadPropertiesData();
+      // loadPropertiesData();
     },
   });
 

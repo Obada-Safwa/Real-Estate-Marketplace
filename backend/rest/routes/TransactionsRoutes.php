@@ -5,6 +5,9 @@
  *      path="/transactions",
  *      tags={"Transactions"},
  *      summary="Get all transactions",
+ *      security={
+ *          {"ApiKey": {}}
+ *      },
  *      @OA\Response(
  *           response=200,
  *           description="A list of transactions",
@@ -32,6 +35,9 @@ Flight::route("GET /transactions", function () {
  *      path="/transactions/{id}",
  *      tags={"Transactions"},
  *      summary="Get a transaction by ID",
+ *      security={
+ *          {"ApiKey": {}}
+ *      },
  *      @OA\Parameter(
  *          name="id",
  *          in="path",
@@ -64,6 +70,9 @@ Flight::route("GET /transactions/@id", function ($id) {
  *      path="/transactions",
  *      tags={"Transactions"},
  *      summary="Create a new transaction",
+ *      security={
+ *          {"ApiKey": {}}
+ *      },
  *      @OA\RequestBody(
  *          required=true,
  *          @OA\JsonContent(

@@ -227,28 +227,6 @@
 <script src="../assets/js/hs.tom-select.js"></script> -->
 
 <!-- JS Plugins Init. -->
-<!-- <script>
-  (function () {
-    // INITIALIZATION OF CHARTJS
-    // =======================================================
-    document.querySelectorAll(".js-chart").forEach((item) => {
-      HSCore.components.HSChartJS.init(item);
-    });
-
-    var rangeReady = false;
-
-    document
-      .querySelector("#priceFilterFormDropdown")
-      .addEventListener("shown.bs.dropdown", (el) => {
-        if (!rangeReady) {
-          HSCore.components.HSNoUISlider.init(".js-nouislider");
-        }
-
-        return (rangeReady = true);
-      });
-
-    // INITIALIZATION OF SELECT
-    // =======================================================
-    HSCore.components.HSTomSelect.init(".js-select");
-  })();
-</script> -->
+<script>
+  PropertiesServices.filterInit();
+</script>

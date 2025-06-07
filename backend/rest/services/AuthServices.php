@@ -24,8 +24,9 @@ class AuthServices extends BaseServices
 
     public function register($entity)
     {
-        if (empty($entity['email']) || empty($entity['password'])) {
-            return ['success' => false, 'error' => 'Email and password are required.'];
+        if (empty($entity['email']) || empty($entity['password']) || empty($entity['name'])) {
+            return ['success' => false, 'error' => 'Email, password and name are required.'];
+            // return ['success' => false, 'error' => json_encode($entity)];
         }
 
 
@@ -36,7 +37,6 @@ class AuthServices extends BaseServices
 
 
         $entity['password'] = password_hash($entity['password'], PASSWORD_BCRYPT);
-
 
         $entity = parent::add($entity);
 
@@ -70,8 +70,7 @@ class AuthServices extends BaseServices
         $jwt_payload = [
             'user' => $user,
             'iat' => time(),
-            // If this parameter is not set, JWT will be valid for life. This is not a good approach
-            'exp' => time() + (60 * 60 * 24) // valid for day
+            'exp' => time() + (60 * 60 * 34)
         ];
 
 

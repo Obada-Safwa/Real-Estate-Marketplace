@@ -68,8 +68,8 @@
           <a href="#about" class="nav-item nav-link">About</a>
           <a href="#service" class="nav-item nav-link">Services</a>
         </div>
-        <div class="mx-auto p-2 p-lg-0">
-          <button class="add-property-btn">
+        <div class="mx-auto p-2 p-lg-0 d-flex">
+          <button class="add-property-btn me-2">
             <span>
               <svg
                 height="24"
@@ -86,14 +86,31 @@
               Add Property
             </span>
           </button>
+          <button class="logout-btn" id="logout-btn">
+            <span>
+              <svg
+                height="24"
+                width="24"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M0 0h24v24H0z" fill="none"></path>
+                <path
+                  d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+              Logout
+            </span>
+          </button>
         </div>
       </div>
     </nav>
     <!-- Navbar End -->
     <main id="spapp" role="main">
       <section id="about" data-load="about.html"></section>
-      <section id="main" data-load="main.html"></section>
-      <section id="properties" data-load="properties.html"></section>
+      <section id="main"></section>
+      <section id="properties"></section>
       <section id="service" data-load="service.html"></section>
       <section id="propertydetails" data-load="propertydetails.html"></section>
     </main>
@@ -166,3 +183,32 @@
     <script src="frontend/services/properties_services.js"></script>
   </body>
 </html>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    if (!Utils.get_from_localstorage("user")) {
+      console.log("user not found");
+      window.location.reload();
+      window.location.href =
+        "http://localhost/Real-Estate-Marketplace/frontend/pages/login.html";
+    }
+  });
+
+  // Logout button functionality
+  document.getElementById("logout-btn").addEventListener("click", function () {
+    // Clear user data from localStorage
+    localStorage.removeItem("user");
+    // Redirect to login page
+    window.location.href = "frontend/pages/login.html";
+    window.location.reload();
+  });
+
+  // Show/hide logout button based on login status
+  document.addEventListener("DOMContentLoaded", function () {
+    const logoutBtn = document.getElementById("logout-btn");
+    if (localStorage.getItem("user")) {
+      logoutBtn.style.display = "block";
+    } else {
+      logoutBtn.style.display = "none";
+    }
+  });
+</script>

@@ -29,6 +29,20 @@ var PropertiesServices = {
       bathrooms: document.getElementById("bathrooms"),
       area: document.getElementById("area"),
     };
+    RestClient.get("properties", (response) => {
+      // Store all properties in session storage
+      Utils.set_to_sessionstorage("properties", response);
+      console.log("Properties stored in session storage:", response);
+
+      // Set filtered properties to all properties initially
+      filteredProperties = response;
+
+      // Display first page of properties
+      displayProperties(filteredProperties, 1);
+
+      // Show or hide load more button based on number of properties
+      toggleLoadMoreButton();
+    });
 
     function parsePriceRange(priceRange) {
       if (!priceRange) return { min: null, max: null };
@@ -282,18 +296,3 @@ function toggleLoadMoreButton() {
     }
   }
 }
-
-RestClient.get("properties", (response) => {
-  // Store all properties in session storage
-  Utils.set_to_sessionstorage("properties", response);
-  console.log("Properties stored in session storage:", response);
-
-  // Set filtered properties to all properties initially
-  filteredProperties = response;
-
-  // Display first page of properties
-  displayProperties(filteredProperties, 1);
-
-  // Show or hide load more button based on number of properties
-  toggleLoadMoreButton();
-});

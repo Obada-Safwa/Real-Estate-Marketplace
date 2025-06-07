@@ -5,6 +5,9 @@
  *      path="/properties",
  *      tags={"Properties"},
  *      summary="Get all properties",
+ *      security={
+ *          {"ApiKey": {}}
+ *      },
  *      @OA\Response(
  *           response=200,
  *           description="A list of properties",
@@ -38,6 +41,9 @@ Flight::route("GET /properties", function () {
  *      path="/properties/{id}",
  *      tags={"Properties"},
  *      summary="Get a property by ID",
+ *      security={
+ *          {"ApiKey": {}}
+ *      },
  *      @OA\Parameter(
  *          name="id",
  *          in="path",
@@ -76,6 +82,9 @@ Flight::route("GET /properties/@id", function ($id) {
  *      path="/properties",
  *      tags={"Properties"},
  *      summary="Create a new property",
+ *      security={
+ *          {"ApiKey": {}}
+ *      },
  *      @OA\RequestBody(
  *          required=true,
  *          @OA\JsonContent(
@@ -110,6 +119,9 @@ Flight::route("POST /properties", function () {
  *      path="/properties/{id}",
  *      tags={"Properties"},
  *      summary="Delete a property",
+ *      security={
+ *          {"ApiKey": {}}
+ *      },
  *      @OA\Parameter(
  *          name="id",
  *          in="path",
@@ -132,6 +144,9 @@ Flight::route("DELETE /properties/@id", function ($id) {
  *      path="/properties/{id}",
  *      tags={"Properties"},
  *      summary="Update a property",
+ *      security={
+ *          {"ApiKey": {}}
+ *      },
  *      @OA\Parameter(
  *          name="id",
  *          in="path",
@@ -168,6 +183,9 @@ Flight::route("PUT /properties/@id", function ($id) {
  *      path="/properties/details/{id}",
  *      tags={"Properties"},
  *      summary="Get detailed property information by ID",
+ *      security={
+ *          {"ApiKey": {}}
+ *      },
  *      @OA\Parameter(
  *          name="id",
  *          in="path",
@@ -218,13 +236,10 @@ Flight::route("GET /properties/details/@id", function ($id) {
     // Get user/seller information if available
     if (isset($property["0"]['user_id'])) {
         $user = Flight::users_service()->get_by_id($property["0"]['user_id'], "id");
-        $property['user_details'] = $user;
-        // Remove sensitive information
         if ($user) {
-            // unset($user['password']);
+            unset($user[0]['password']);
             $property['user_details'] = $user;
         }
     }
-
     Flight::json($property);
 });

@@ -68,6 +68,9 @@ Flight::route("GET /reports/@id", function ($id) {
  *      path="/reports",
  *      tags={"Reports"},
  *      summary="Create a new report",
+ *      security={
+ *          {"ApiKey": {}}
+ *      },
  *      @OA\RequestBody(
  *          required=true,
  *          @OA\JsonContent(

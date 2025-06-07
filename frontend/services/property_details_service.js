@@ -1,21 +1,6 @@
 // Property Details Service
 // Handles fetching and displaying property details by ID
 
-document.addEventListener("DOMContentLoaded", function () {
-  // Get property ID from URL parameter
-  const urlParams = new URLSearchParams(window.location.search);
-  console.log("URL Parameters:", urlParams);
-  console.log("Property ID:", urlParams.get("id"));
-  console.log("window.location.search:", window.location.search);
-  const propertyId = urlParams.get("id");
-
-  if (propertyId) {
-    loadPropertyDetails(propertyId);
-  } else {
-    displayError("Property ID not found");
-  }
-});
-
 /**
  * Fetches property details from the backend API
  * @param {number} propertyId - The ID of the property to fetch
