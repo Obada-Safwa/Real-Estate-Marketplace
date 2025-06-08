@@ -3,7 +3,7 @@ var Constants = {
     if (location.hostname == "localhost") {
       return "http://localhost/Real-Estate-Marketplace/backend/";
     } else {
-      return "https://walrus-app-dere7.ondigitalocean.app/Real-Estate-Marketplace/backend/";
+      return "https://backendrealestate-gcv2b.ondigitalocean.app/";
     }
   },
 };
