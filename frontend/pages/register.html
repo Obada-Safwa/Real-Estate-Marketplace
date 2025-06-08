@@ -220,8 +220,7 @@
   document.addEventListener("DOMContentLoaded", function () {
     if (
       Utils.get_from_localstorage("user") &&
-      window.location.href ==
-        "http://localhost/Real-Estate-Marketplace/frontend/pages/register.html"
+      window.location.href.includes("pages/register.html")
     ) {
       console.log("user", Utils.get_from_localstorage("user"));
       console.log("window.location.href register", window.location.href);

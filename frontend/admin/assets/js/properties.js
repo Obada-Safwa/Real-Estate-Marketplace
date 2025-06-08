@@ -1,3 +1,4 @@
+// Using the updated path for RestClient after admin folder relocation
 RestClient.get("properties", function (response) {
   response.forEach((property) => {
     const row = document.createElement("tr");
