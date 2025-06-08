@@ -176,7 +176,7 @@ function displayDefaultImage() {
 
     const defaultImage = document.createElement("div");
     defaultImage.className = "carousel-item active";
-    defaultImage.innerHTML = `<img src="../../frontend/assets/images/banner.jpg" 
+    defaultImage.innerHTML = `<img src="../../assets/images/banner.jpg" 
                              class="d-block w-100" alt="Property Image">`;
     carouselInner.appendChild(defaultImage);
 
@@ -197,7 +197,7 @@ function displaySellerInformation(userDetails) {
   if (sellerProfile) {
     sellerProfile.innerHTML = `
       <div class="agent-image">
-        <img src="../../frontend/assets/images/agent.jpg" alt="Agent Photo">
+        <img src="../../assets/images/agent.jpg" alt="Agent Photo">
       </div>
       <div class="agent-info">
         <h4>${userDetails.name || userDetails.username || "Agent Name"}</h4>
@@ -220,7 +220,7 @@ function displayError(message) {
         <div class="alert alert-danger" role="alert">
           <i class="fas fa-exclamation-circle"></i> ${message}
         </div>
-        <a href="../../index.html" class="btn btn-primary">
+        <a href="../index.html" class="btn btn-primary">
           <i class="fas fa-arrow-left"></i> Back to Home
         </a>
       </div>

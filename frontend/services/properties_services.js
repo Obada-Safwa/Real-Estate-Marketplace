@@ -221,7 +221,7 @@ function displayProperties(propertiesToDisplay, page) {
     card.classList.add("box", "mb-4");
     card.style.cursor = "pointer"; // Add cursor pointer to indicate clickable
     card.onclick = function () {
-      window.location.href = `frontend/pages/propertydetails.html?id=${property.id}`;
+      window.location.href = `pages/propertydetails.html?id=${property.id}`;
     };
     card.innerHTML = `
       <div class="top">

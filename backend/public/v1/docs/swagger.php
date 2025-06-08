@@ -2,7 +2,11 @@
 
 require __DIR__ . '/../../../vendor/autoload.php';
 
-define('BASE_URL', 'http://localhost/Real-Estate-Marketplace/backend/');
+if ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_NAME'] == '127.0.0.1') {
+    define('BASE_URL', 'http://localhost/Real-Estate-Marketplace/backend/');
+} else {
+    define('BASE_URL', 'https://backendrealestate-gcv2b.ondigitalocean.app/');
+}
 
 error_reporting(0);
 

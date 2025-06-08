@@ -3,7 +3,7 @@ $(document).ready(function () {
 
   var app = $.spapp({
     defaultView: "#main",
-    templateDir: "./frontend/pages/",
+    templateDir: "./pages/",
   }); // initialize
   app.route({
     view: "main",

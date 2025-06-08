@@ -1,7 +1,7 @@
 const images = [
-  "frontend/assets/images/banner.jpg",
-  "frontend/assets/images/banner.jpg",
-  "frontend/assets/images/banner.jpg",
+  "assets/images/banner.jpg",
+  "assets/images/banner.jpg",
+  "assets/images/banner.jpg",
 ];
 
 const carousel = document.getElementById("carouselExampleControls");
