@@ -199,7 +199,7 @@
       data,
       function (response) {
         Utils.set_to_localstorage("user", response);
-        window.location.href = "../../index.html";
+        window.location.href = "../index.html";
         console.log("response", response);
       },
       function (error) {
@@ -218,7 +218,7 @@
       console.log("user", Utils.get_from_localstorage("user"));
       console.log("window.location.href login", window.location.href);
       window.location.reload();
-      window.location.href = "../../index.html";
+      window.location.href = "../index.html";
     }
   }
 
