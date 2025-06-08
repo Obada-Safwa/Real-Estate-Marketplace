@@ -7,14 +7,14 @@ class UsersDao extends BaseDao
 
     public function __construct()
     {
-        parent::__construct("Users");
+        parent::__construct("users");
     }
 
 
     public function get_by_email($email)
     {
         return $this->query(
-            "SELECT * FROM Users WHERE email = :email",
+            "SELECT * FROM users WHERE email = :email",
             [":email" => $email]
         );
     }
@@ -22,7 +22,7 @@ class UsersDao extends BaseDao
     public function get_by_name($name)
     {
         return $this->query(
-            "SELECT * FROM Users WHERE name = :name",
+            "SELECT * FROM users WHERE name = :name",
             [":name" => $name]
         );
     }
@@ -30,7 +30,7 @@ class UsersDao extends BaseDao
     public function get_all_users()
     {
         return $this->query(
-            "SELECT * FROM Users",
+            "SELECT * FROM users",
             []
         );
     }
