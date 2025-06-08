@@ -3,6 +3,7 @@
 require_once "cors.php";
 
 require "vendor/autoload.php";
+require_once "middleware/AuthMiddleware.php";
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
@@ -67,6 +68,7 @@ Flight::register("reports_service", "ReportsServices");
 Flight::register("transactions_service", "TransactionsServices");
 Flight::register("property_images_service", "PropertyImagesServices");
 
+Flight::register("auth_middleware", "AuthMiddleware");
 
 
 Flight::start();
