@@ -52,6 +52,9 @@ Flight::group('/auth', function () {
         $data = Flight::request()->data->getData();
 
         $response = Flight::auth_service()->register($data);
+        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            Flight::halt(500,  "Invalid email format");
+        }
 
         if ($response['success']) {
             Flight::json([
@@ -86,6 +89,9 @@ Flight::group('/auth', function () {
 
 
         $response = Flight::auth_service()->login($data);
+        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            Flight::halt(500,  "Invalid email format");
+        }
 
         if ($response['success']) {
             Flight::json([

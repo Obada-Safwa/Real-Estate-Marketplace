@@ -28,6 +28,12 @@
       rel="stylesheet"
     />
 
+    <!-- Toastr CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+      rel="stylesheet"
+    />
+
     <!-- Admin Dashboard CSS -->
     <link href="assets/css/admin.css" rel="stylesheet" />
 
@@ -40,6 +46,10 @@
         justify-content: center;
         min-height: 100vh;
         padding: 20px;
+      }
+
+      .error {
+        color: red;
       }
 
       .login-container {
@@ -261,22 +271,68 @@
     <script src="../utils/rest_client.js"></script>
     <script src="../utils/form_validation.js"></script>
 
+    <!-- Toastr Configuration -->
     <script>
-      FormValidation.validate("#admin-login-form", {}, (data) => {
-        RestClient.post(
-          "auth/login-admin",
-          data,
-          function (response) {
-            Utils.set_to_localstorage("admin", response);
-            window.location.href = "index.html";
-            console.log("response", response);
+      // Configure Toastr options
+      toastr.options = {
+        closeButton: true,
+        progressBar: true,
+        positionClass: "toast-top-right",
+        timeOut: 5000,
+        extendedTimeOut: 1000,
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut",
+      };
+    </script>
+
+    <script>
+      FormValidation.validate(
+        "#admin-login-form",
+        {
+          email: {
+            required: true,
+            email: true,
+            minlength: 5,
+            maxlength: 100
           },
-          function (error) {
-            console.log("error", error);
-            // toastr.error(error.responseText);
+          password: {
+            required: true,
+            minlength: 6,
+            maxlength: 50
           }
-        );
-      });
+        },
+        (data) => {
+          // Show loading spinner
+          $("#login-spinner").removeClass("d-none");
+          const loginBtn = $("#admin-login-form button[type='submit']");
+          loginBtn.prop("disabled", true);
+
+          RestClient.post(
+            "auth/login-admin",
+            data,
+            function (response) {
+              Utils.set_to_localstorage("admin", response);
+              toastr.success("Login successful! Redirecting to dashboard...");
+              setTimeout(() => {
+                window.location.href = "index.html";
+              }, 1000);
+              console.log("response", response);
+            },
+            function (error) {
+              console.log("error", error);
+              toastr.error(
+                error.responseText ||
+                  "Login failed. Please check your credentials."
+              );
+              // Reset button state
+              $("#login-spinner").addClass("d-none");
+              loginBtn.prop("disabled", false);
+            }
+          );
+        }
+      );
 
       function checkUserAndRedirect() {
         if (
