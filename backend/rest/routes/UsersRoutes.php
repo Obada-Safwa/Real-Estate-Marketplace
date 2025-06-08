@@ -28,6 +28,7 @@
  * )
  */
 Flight::route("GET /users", function () {
+    Flight::auth_middleware()->authorizeRole('admin');
     Flight::json(Flight::users_service()->get_all());
 });
 
@@ -62,6 +63,7 @@ Flight::route("GET /users", function () {
  * )
  */
 Flight::route("GET /users/@id", function ($id) {
+    Flight::auth_middleware()->authorizeRole('admin');
     Flight::json(Flight::users_service()->get_by_id($id, "id"));
 });
 
@@ -96,6 +98,7 @@ Flight::route("GET /users/@id", function ($id) {
  * )
  */
 Flight::route("POST /users", function () {
+    Flight::auth_middleware()->authorizeRole('admin');
     $request = Flight::request()->data->getData();
     Flight::json(Flight::users_service()->add($request));
 });
@@ -126,6 +129,7 @@ Flight::route("POST /users", function () {
  * )
  */
 Flight::route("DELETE /users/@id", function ($id) {
+    Flight::auth_middleware()->authorizeRole('admin');
     Flight::json(Flight::users_service()->delete($id, "id"));
 });
 
@@ -165,6 +169,7 @@ Flight::route("DELETE /users/@id", function ($id) {
  * )
  */
 Flight::route("PUT /users/@id", function ($id) {
+    Flight::auth_middleware()->authorizeRole('admin');
     $request = Flight::request()->data->getData();
     Flight::json(Flight::users_service()->update($request, $id, "id"));
 });

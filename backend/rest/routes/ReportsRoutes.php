@@ -26,6 +26,7 @@
  * )
  */
 Flight::route("GET /reports", function () {
+    Flight::auth_middleware()->authorizeRole('admin');
     Flight::json(Flight::reports_service()->get_all());
 });
 
@@ -60,6 +61,7 @@ Flight::route("GET /reports", function () {
  * )
  */
 Flight::route("GET /reports/@id", function ($id) {
+    Flight::auth_middleware()->authorizeRole('admin');
     Flight::json(Flight::reports_service()->get_by_id($id, "id"));
 });
 
@@ -89,6 +91,7 @@ Flight::route("GET /reports/@id", function ($id) {
  * )
  */
 Flight::route("POST /reports", function () {
+    Flight::auth_middleware()->authorizeRole('admin');
     $request = Flight::request()->data->getData();
     Flight::json(Flight::reports_service()->add($request));
 });
@@ -115,6 +118,7 @@ Flight::route("POST /reports", function () {
  * )
  */
 Flight::route("DELETE /reports/@id", function ($id) {
+    Flight::auth_middleware()->authorizeRole('admin');
     Flight::json(Flight::reports_service()->delete($id, "id"));
 });
 
@@ -147,6 +151,7 @@ Flight::route("DELETE /reports/@id", function ($id) {
  * )
  */
 Flight::route("PUT /reports/@id", function ($id) {
+    Flight::auth_middleware()->authorizeRole('admin');
     $request = Flight::request()->data->getData();
     Flight::json(Flight::reports_service()->update($request, $id, "id"));
 });

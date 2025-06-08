@@ -136,6 +136,7 @@ Flight::route("POST /properties", function () {
  * )
  */
 Flight::route("DELETE /properties/@id", function ($id) {
+    Flight::auth_middleware()->authorizeRole('admin');
     Flight::json(Flight::properties_service()->delete($id, "id"));
 });
 

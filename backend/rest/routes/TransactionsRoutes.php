@@ -27,6 +27,7 @@
  * )
  */
 Flight::route("GET /transactions", function () {
+    Flight::auth_middleware()->authorizeRole('admin');
     Flight::json(Flight::transactions_service()->get_all());
 });
 
@@ -118,6 +119,7 @@ Flight::route("POST /transactions", function () {
  * )
  */
 Flight::route("DELETE /transactions/@id", function ($id) {
+    Flight::auth_middleware()->authorizeRole('admin');
     Flight::json(Flight::transactions_service()->delete($id, "id"));
 });
 
@@ -150,6 +152,7 @@ Flight::route("DELETE /transactions/@id", function ($id) {
  * )
  */
 Flight::route("PUT /transactions/@id", function ($id) {
+    Flight::auth_middleware()->authorizeRole('admin');
     $request = Flight::request()->data->getData();
     Flight::json(Flight::transactions_service()->update($request, $id, "id"));
 });
