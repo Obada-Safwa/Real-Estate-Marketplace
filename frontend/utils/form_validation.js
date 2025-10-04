@@ -17,6 +17,7 @@ var FormValidation = {
         event.preventDefault();
         success.show();
         error.hide();
+        console.log(form_object);
         if (form_submit_handler_callback) {
           form_submit_handler_callback(
             FormValidation.serialize_form(form_object)

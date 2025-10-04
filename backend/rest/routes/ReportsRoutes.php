@@ -91,8 +91,10 @@ Flight::route("GET /reports/@id", function ($id) {
  * )
  */
 Flight::route("POST /reports", function () {
-    Flight::auth_middleware()->authorizeRole('admin');
+    // Flight::auth_middleware()->authorizeRole('admin');
     $request = Flight::request()->data->getData();
+    $user = Flight::get('user');
+    $request['user_id'] = $user->id;
     Flight::json(Flight::reports_service()->add($request));
 });
 

@@ -230,7 +230,9 @@ function displayProperties(propertiesToDisplay, page) {
           alt="Property Image"
         />
         <span>
-          <a href="javascript:void(0)" class="flag-icon" title="Report Property" onclick="event.stopPropagation()">
+          <a href="javascript:void(0)" class="flag-icon" title="Report Property" onclick="event.stopPropagation(); showReportPopup(${
+            property.id
+          })">
             <i class="fas fa-flag"></i>
           </a>
         </span>
@@ -296,3 +298,99 @@ function toggleLoadMoreButton() {
     }
   }
 }
+
+// Function to show report popup
+function showReportPopup(propertyId) {
+  // Create modal if it doesn't exist
+  let modal = document.getElementById("report-modal");
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.id = "report-modal";
+    modal.className = "report-modal";
+    modal.innerHTML = `
+    <form id="report-form">
+      <div class="report-modal-content">
+        <span class="report-close" onclick="closeReportPopup()">&times;</span>
+        <h2>Report Property</h2>
+        <textarea id="report-reason" placeholder="Reason for report" rows="6" name="reason"></textarea>
+        <input type="hidden" id="property-id" name="property_id" value="${propertyId}">
+        <div class="report-buttons">
+          <button type="submit" class="report-submit-btn" id="report-submit-btn">Submit Report</button>
+          <button class="report-cancel-btn" onclick="closeReportPopup()">Cancel</button>
+        </div>
+      </div>
+    </form>
+    `;
+    document.body.appendChild(modal);
+  }
+
+  // Update the submit button's onclick handler with the current property ID
+  const submitBtn = document.getElementById("report-submit-btn");
+  submitBtn.onclick = function () {
+    submitReport(propertyId);
+  };
+
+  // Clear previous text and show modal
+  document.getElementById("report-reason").value = "";
+  modal.style.display = "flex";
+}
+
+// Function to close report popup
+function closeReportPopup() {
+  const modal = document.getElementById("report-modal");
+  if (modal) {
+    modal.style.display = "none";
+  }
+}
+
+// Function to submit report
+function submitReport(propertyId) {
+  console.log("propertyId MY", propertyId);
+  const reason = document.getElementById("report-reason").value.trim();
+
+  if (!reason) {
+    alert("Please provide a reason for reporting this property.");
+    return;
+  }
+
+  FormValidation.validate(
+    "#report-form",
+    {
+      reason: {
+        required: true,
+        minlength: 5,
+        maxlength: 100,
+      },
+    },
+    function (data) {
+      console.log("data", data);
+      RestClient.post(
+        "reports",
+        data,
+        function (response) {
+          toastr.success("Report Submitted");
+          console.log("Report Submitted", response);
+        },
+        function (error) {
+          console.log("error Submit Report", error);
+
+          toastr.error(error.responseText || "There is an Error");
+        }
+      );
+    }
+  );
+
+  // Here you can add the API call to submit the report
+  console.log("Reporting property:", propertyId, "Reason:", reason);
+
+  // Close the modal
+  closeReportPopup();
+}
+
+// Close modal when clicking outside of it
+window.onclick = function (event) {
+  const modal = document.getElementById("report-modal");
+  if (event.target === modal) {
+    closeReportPopup();
+  }
+};
