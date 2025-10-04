@@ -88,8 +88,7 @@ Flight::route("GET /properties/@id", function ($id) {
  *      @OA\RequestBody(
  *          required=true,
  *          @OA\JsonContent(
- *              required={"user_id", "title", "description", "price", "type", "bedrooms", "bathrooms", "area", "category", "location"},
- *              @OA\Property(property="user_id", type="integer", example=1),
+ *              required={"title", "description", "price", "type", "bedrooms", "bathrooms", "area", "category", "location"},
  *              @OA\Property(property="title", type="string", example="Luxury Apartment"),
  *              @OA\Property(property="description", type="string", example="A beautiful 3-bedroom apartment in the city center."),
  *              @OA\Property(property="price", type="string", example="250000.00"),
@@ -111,6 +110,9 @@ Flight::route("GET /properties/@id", function ($id) {
  */
 Flight::route("POST /properties", function () {
     $request = Flight::request()->data->getData();
+    $user = Flight::get('user');
+    $request['user_id'] = $user->id;
+    $request['status'] = 'available';
     Flight::json(Flight::properties_service()->add($request));
 });
 
