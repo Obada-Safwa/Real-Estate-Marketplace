@@ -99,6 +99,7 @@ Flight::route("GET /properties/@id", function ($id) {
  *              @OA\Property(property="category", type="string", example="apartment"),
  *              @OA\Property(property="location", type="string", example="New York, NY"),
  *              @OA\Property(property="status", type="string", example="available"),
+ *              @OA\Property(property="image_url", type="string", example="available"),
  *              @OA\Property(property="created_at", type="string", format="date-time", example="2025-03-24 16:05:43")
  *          )
  *      ),
@@ -113,7 +114,7 @@ Flight::route("POST /properties", function () {
     $user = Flight::get('user');
     $request['user_id'] = $user->id;
     $request['status'] = 'available';
-    Flight::json(Flight::properties_service()->add($request));
+    Flight::json(Flight::properties_service()->addProperty($request));
 });
 
 /**

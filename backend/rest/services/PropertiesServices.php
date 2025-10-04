@@ -8,4 +8,9 @@ class PropertiesServices extends BaseServices
     {
         parent::__construct(new PropertiesDao);
     }
+
+    public function addProperty($property)
+    {
+        return $this->dao->addProperty($property);
+    }
 }

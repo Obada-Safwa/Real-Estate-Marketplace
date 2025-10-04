@@ -40,7 +40,7 @@ $(document).ready(function () {
     },
     onReady: function () {
       console.log("Users view loaded");
-      loadUsersData();
+      // loadUsersData();
     },
   });
 
@@ -74,42 +74,43 @@ $(document).ready(function () {
     }
   });
 
-  // Tooltip initialization
-  var tooltipTriggerList = [].slice.call(
-    document.querySelectorAll('[data-bs-toggle="tooltip"]')
-  );
-  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl);
-  });
+  //   // Tooltip initialization
+  //   var tooltipTriggerList = [].slice.call(
+  //     document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  //   );
+  //   var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  //     return new bootstrap.Tooltip(tooltipTriggerEl);
+  //   });
 
-  // Show spinner when loading content
-  $(document).on("spapp:viewChange", function () {
-    $("#spinner").addClass("show");
-    setTimeout(function () {
-      $("#spinner").removeClass("show");
-    }, 500);
-  });
+  //   // Show spinner when loading content
+  //   $(document).on("spapp:viewChange", function () {
+  //     $("#spinner").addClass("show");
+  //     setTimeout(function () {
+  //       $("#spinner").removeClass("show");
+  //     }, 500);
+  //   });
+  // });
+
+  // // Initialize dashboard charts (placeholder)
+  // function initDashboardCharts() {
+  //   // This is a placeholder for chart initialization
+  //   // We would use Chart.js or similar library to create charts
+  //   console.log("Dashboard charts would be initialized here");
+
+  //   // Simulate data for demonstration purposes
+  //   updateDashboardStats({
+  //     totalProperties: 145,
+  //     totalUsers: 312,
+  //     pendingApprovals: 8,
+  //     recentSales: 24,
+  //   });
+  // }
+
+  // // Update dashboard statistics
+  // function updateDashboardStats(data) {
+  //   $("#totalProperties").text(data.totalProperties);
+  //   $("#totalUsers").text(data.totalUsers);
+  //   $("#pendingApprovals").text(data.pendingApprovals);
+  //   $("#recentSales").text(data.recentSales);
+  // }
 });
-
-// Initialize dashboard charts (placeholder)
-function initDashboardCharts() {
-  // This is a placeholder for chart initialization
-  // We would use Chart.js or similar library to create charts
-  console.log("Dashboard charts would be initialized here");
-
-  // Simulate data for demonstration purposes
-  updateDashboardStats({
-    totalProperties: 145,
-    totalUsers: 312,
-    pendingApprovals: 8,
-    recentSales: 24,
-  });
-}
-
-// Update dashboard statistics
-function updateDashboardStats(data) {
-  $("#totalProperties").text(data.totalProperties);
-  $("#totalUsers").text(data.totalUsers);
-  $("#pendingApprovals").text(data.pendingApprovals);
-  $("#recentSales").text(data.recentSales);
-}
