@@ -11,7 +11,7 @@ function getReports() {
         <td>${report.status}</td>
         <td>
           <div class="btn-group">
-            <button class="btn btn-sm btn-outline-danger" onclick="deleteReport(${report.id})">
+            <button class="btn btn-sm btn-outline-danger" onclick="deleteProperty(${report.id})">
               <i class="fas fa-trash"></i>
             </button>
           </div>
@@ -22,18 +22,43 @@ function getReports() {
   });
 }
 
-function deleteReport(reportId) {
+// Variable to store the property ID to be deleted
+let propertyIdToDelete = null;
+
+// Function to show delete confirmation modal
+function deleteProperty(propertyId) {
+  propertyIdToDelete = propertyId;
+  const modalElement = document.getElementById("deletePropertyModal");
+  const modal = new bootstrap.Modal(modalElement);
+  modal.show();
+}
+
+// Function to actually delete the property after confirmation
+function confirmDeleteProperty() {
+  if (propertyIdToDelete === null) {
+    return;
+  }
+
   RestClient.delete(
-    `reports/${reportId}`,
+    `reports/${propertyIdToDelete}`,
     {},
     function (response) {
       getReports();
+
       toastr.success("Report deleted successfully");
       console.log("Report deleted:", response);
+
+      // Close the modal and reset the property ID
+      const modal = bootstrap.Modal.getInstance(
+        document.getElementById("deletePropertyModal")
+      );
+      modal.hide();
+      propertyIdToDelete = null;
     },
     function (error) {
       console.log("Error deleting report:", error);
       toastr.error(error.responseText || "Failed to delete report");
+      propertyIdToDelete = null;
     }
   );
 }

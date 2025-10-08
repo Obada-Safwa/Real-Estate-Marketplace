@@ -259,3 +259,26 @@ main {
 ::-webkit-scrollbar-thumb:hover {
   background: #a8a8a8;
 }
+
+/* Modal fixes - prevent hover issues */
+.modal-backdrop {
+  pointer-events: none;
+}
+
+.modal {
+  pointer-events: none;
+}
+
+.modal-dialog {
+  pointer-events: auto;
+}
+
+/* Prevent hover effects when modal is open */
+body.modal-open .dashboard-card:hover {
+  transform: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body.modal-open .admin-table tbody tr:hover {
+  background-color: transparent;
+}
