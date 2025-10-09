@@ -34,4 +34,11 @@ class PropertiesDao extends BaseDao
         $result['image_url'] = $property_image['image_url'];
         return $result;
     }
+
+    public function get_all()
+    {
+        $sql = $this->connection->prepare("SELECT * FROM properties join property_images on properties.id = property_images.property_id");
+        $sql->execute();
+        return $sql->fetchAll();
+    }
 }

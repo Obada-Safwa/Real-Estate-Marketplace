@@ -217,16 +217,19 @@ function displayProperties(propertiesToDisplay, page) {
 
   // Display properties
   paginatedProperties.forEach((property) => {
-    const card = document.createElement("div");
-    card.classList.add("box", "mb-4");
-    card.style.cursor = "pointer"; // Add cursor pointer to indicate clickable
-    card.onclick = function () {
-      window.location.href = `pages/propertydetails.html?id=${property.id}`;
-    };
-    card.innerHTML = `
+    if (property.status != "sold") {
+      const card = document.createElement("div");
+      card.classList.add("box", "mb-4");
+      card.style.cursor = "pointer"; // Add cursor pointer to indicate clickable
+      card.onclick = function () {
+        window.location.href = `pages/propertydetails.html?id=${property.id}`;
+      };
+      card.innerHTML = `
       <div class="top">
         <img
-          src="https://cdn.pixabay.com/photo/2014/07/10/17/18/large-home-389271__340.jpg"
+          src=${
+            property.image_url
+          }                                                                                                                                   
           alt="Property Image"
         />
         <span>
@@ -270,7 +273,8 @@ function displayProperties(propertiesToDisplay, page) {
       </div>
     `;
 
-    cardSelector.appendChild(card);
+      cardSelector.appendChild(card);
+    }
   });
 }
 
