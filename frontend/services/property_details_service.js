@@ -85,7 +85,7 @@ function displayPropertyDetails(property) {
   }
 
   // Update property location
-  const locationElement = document.querySelector(".location");
+  const locationElement = document.querySelector(".property-location");
   if (locationElement) {
     locationElement.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${property.location}`;
   }
@@ -193,16 +193,15 @@ function displayDefaultImage() {
  * @param {Object} userDetails - The user/seller details object
  */
 function displaySellerInformation(userDetails) {
+  console.log("userDetails infooo", userDetails["0"]);
   const sellerProfile = document.querySelector(".seller-profile");
   if (sellerProfile) {
     sellerProfile.innerHTML = `
-      <div class="agent-image">
-        <img src="../../assets/images/agent.jpg" alt="Agent Photo">
-      </div>
       <div class="agent-info">
-        <h4>${userDetails.name || userDetails.username || "Agent Name"}</h4>
-        <p><i class="fas fa-phone"></i> ${userDetails.phone || "N/A"}</p>
-        <p><i class="fas fa-envelope"></i> ${userDetails.email || "N/A"}</p>
+        <h4>${userDetails["0"].name}</h4>
+        <p><i class="fas fa-envelope"></i> ${
+          userDetails["0"].email || "N/A"
+        }</p>
       </div>
     `;
   }

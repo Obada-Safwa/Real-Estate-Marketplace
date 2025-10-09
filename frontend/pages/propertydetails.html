@@ -217,50 +217,12 @@
               convenience.
             </p>
           </div>
-
-          <div class="section-title">Amenities</div>
-          <div class="row mb-4">
-            <div class="col-md-6">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                  <i class="fas fa-check text-success me-2"></i> Swimming Pool
-                </li>
-                <li class="list-group-item">
-                  <i class="fas fa-check text-success me-2"></i> Garden
-                </li>
-                <li class="list-group-item">
-                  <i class="fas fa-check text-success me-2"></i> Air
-                  Conditioning
-                </li>
-                <li class="list-group-item">
-                  <i class="fas fa-check text-success me-2"></i> Fireplace
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-6">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                  <i class="fas fa-check text-success me-2"></i> Home Office
-                </li>
-                <li class="list-group-item">
-                  <i class="fas fa-check text-success me-2"></i> Security System
-                </li>
-                <li class="list-group-item">
-                  <i class="fas fa-check text-success me-2"></i> Beach Access
-                </li>
-                <li class="list-group-item">
-                  <i class="fas fa-check text-success me-2"></i> Smart Home
-                  Technology
-                </li>
-              </ul>
-            </div>
-          </div>
         </div>
 
         <!-- Seller Information Column -->
         <div class="col-lg-4">
           <div class="seller-card">
-            <div class="section-title">Contact Agent</div>
+            <div class="section-title">Seller Agent</div>
 
             <div class="seller-profile">
               <img
@@ -273,23 +235,6 @@
                 <div class="seller-title">Senior Real Estate Agent</div>
               </div>
             </div>
-
-            <div class="seller-contact">
-              <div class="seller-contact-item">
-                <i class="fas fa-phone"></i>
-                <span>(123) 456-7890</span>
-              </div>
-              <div class="seller-contact-item">
-                <i class="fas fa-envelope"></i>
-                <span>john.smith@example.com</span>
-              </div>
-              <div class="seller-contact-item">
-                <i class="fas fa-building"></i>
-                <span>Luxury Real Estate Group</span>
-              </div>
-            </div>
-
-            <button class="contact-btn">Contact Agent</button>
           </div>
         </div>
       </div>
@@ -358,7 +303,7 @@
     <!-- API and Utility Scripts -->
     <script src="../../utils/constants.js"></script>
     <script src="../../utils/rest_client.js"></script>
-    <script src="../../services/utils.js"></script>
+    <script src="../../utils/utils.js"></script>
     <!-- Property Details Script -->
     <!-- <script>
       // This script will help debug any issues
@@ -427,5 +372,16 @@
       });
     </script> -->
     <script src="../../services/property_details_service.js"></script>
+    <script>
+      // Get property ID from URL parameter
+      const urlParams = new URLSearchParams(window.location.search);
+      const propertyId = urlParams.get("id");
+
+      if (propertyId) {
+        loadPropertyDetails(propertyId);
+      } else {
+        console.error("No property ID found in URL");
+      }
+    </script>
   </body>
 </html>
