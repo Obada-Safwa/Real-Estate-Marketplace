@@ -37,7 +37,7 @@ class PropertiesDao extends BaseDao
 
     public function get_all()
     {
-        $sql = $this->connection->prepare("SELECT * FROM properties join property_images on properties.id = property_images.property_id");
+        $sql = $this->connection->prepare("SELECT * FROM Properties join property_images on properties.id = property_images.property_id");
         $sql->execute();
         return $sql->fetchAll();
     }
