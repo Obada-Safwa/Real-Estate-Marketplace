@@ -222,7 +222,7 @@ function displayProperties(propertiesToDisplay, page) {
       card.classList.add("box", "mb-4");
       card.style.cursor = "pointer"; // Add cursor pointer to indicate clickable
       card.onclick = function () {
-        window.location.href = `pages/propertydetails.html?id=${property.id}`;
+        window.location.href = `pages/propertydetails.html?id=${property.property_id}`;
       };
       card.innerHTML = `
       <div class="top">
@@ -234,7 +234,7 @@ function displayProperties(propertiesToDisplay, page) {
         />
         <span>
           <a href="javascript:void(0)" class="flag-icon" title="Report Property" onclick="event.stopPropagation(); showReportPopup(${
-            property.id
+            property.property_id
           })">
             <i class="fas fa-flag"></i>
           </a>
