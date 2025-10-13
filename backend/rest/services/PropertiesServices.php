@@ -13,4 +13,9 @@ class PropertiesServices extends BaseServices
     {
         return $this->dao->addProperty($property);
     }
+
+    public function get_report_with_property($id)
+    {
+        return $this->dao->get_report_with_property($id);
+    }
 }

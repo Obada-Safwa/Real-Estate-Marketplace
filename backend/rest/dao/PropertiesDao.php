@@ -41,4 +41,21 @@ class PropertiesDao extends BaseDao
         $sql->execute();
         return $sql->fetchAll();
     }
+    public function get_report_with_property($id)
+    {
+        return $this->query(
+            "SELECT 
+  Reports.id AS report_id,
+  Reports.status AS report_status,
+  Reports.reason AS report_reason,
+  Properties.id AS property_id,
+  Properties.user_id AS user_published_property,
+  Reports.user_id AS user_did_report
+FROM Reports
+JOIN Properties ON Properties.id = Reports.property_id
+WHERE Properties.user_id = :id
+  AND Reports.status = 'reviewed';",
+            [":id" => $id]
+        );
+    }
 }

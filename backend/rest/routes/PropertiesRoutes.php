@@ -247,3 +247,49 @@ Flight::route("GET /properties/details/@id", function ($id) {
     }
     Flight::json($property);
 });
+
+/**
+ * @OA\Get(
+ *     path="/properties/reports/{id}",
+ *     summary="Get reports for a specific property",
+ *     description="Fetches all reports related to a specific property by its ID.",
+ *     tags={"Properties"},
+ *     security={
+ *          {"ApiKey": {}}
+ *      },
+ *     @OA\Parameter(
+ *         name="id",
+ *         in="path",
+ *         required=true,
+ *         description="The ID of the property to fetch reports for",
+ *         @OA\Schema(type="integer")
+ *     ),
+ *     @OA\Response(
+ *         response=200,
+ *         description="List of reports for the property",
+ *         @OA\JsonContent(
+ *             type="array",
+ *             @OA\Items(
+ *                 type="object",
+ *                 @OA\Property(property="report_id", type="integer", example=12),
+ *                 @OA\Property(property="report_status", type="string", example="reviewed"),
+ *                 @OA\Property(property="report_reason", type="string", example="Inaccurate description"),
+ *                 @OA\Property(property="property_id", type="integer", example=45),
+ *                 @OA\Property(property="user_published_property", type="integer", example=23),
+ *                 @OA\Property(property="user_did_report", type="integer", example=38)
+ *             )
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=404,
+ *         description="Property or reports not found"
+ *     ),
+ *     @OA\Response(
+ *         response=500,
+ *         description="Internal server error"
+ *     )
+ * )
+ */
+Flight::route("GET /properties/reports/@id", function ($id) {
+    Flight::json(Flight::properties_service()->get_report_with_property($id));
+});
