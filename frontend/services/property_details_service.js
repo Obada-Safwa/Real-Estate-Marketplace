@@ -37,7 +37,7 @@ function loadPropertyDetails(propertyId) {
         // Display property details
         displayPropertyDetails(property);
 
-        displayDefaultImage(images.image_url);
+        displayDefaultImage(response["images"]["0"].image_url);
 
         console.log("property.user_details:", response["user_details"]);
         // Display user/seller details if available
@@ -170,7 +170,7 @@ function displayDefaultImage(image_url) {
     carouselInner.innerHTML = "";
 
     const defaultImage = document.createElement("div");
-    defaultImage.className = "carousel-item active";
+    // defaultImage.className = "carousel-item active";
     defaultImage.innerHTML = `<img src="${image_url}" 
                              class="d-block w-100" alt="Property Image">`;
     carouselInner.appendChild(defaultImage);
