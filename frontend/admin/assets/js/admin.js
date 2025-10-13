@@ -2,7 +2,7 @@
 $(document).ready(function () {
   // Initialize SPA
   var app = $.spapp({
-    defaultView: "#dashboard",
+    defaultView: "#properties",
     templateDir: "./pages/",
     pageNotFound: "404.html",
   });
