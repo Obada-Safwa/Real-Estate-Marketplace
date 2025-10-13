@@ -138,7 +138,11 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Cancel
         </button>
-        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">
+        <button
+          type="button"
+          class="btn btn-danger"
+          id="confirmDeleteReportBtn"
+        >
           <i class="fas fa-trash me-2"></i>Delete Report
         </button>
       </div>
@@ -150,7 +154,7 @@
   getReports();
 
   setTimeout(function () {
-    const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
+    const confirmDeleteBtn = document.getElementById("confirmDeleteReportBtn");
     if (confirmDeleteBtn) {
       confirmDeleteBtn.addEventListener("click", confirmDeleteReport);
     } else {
