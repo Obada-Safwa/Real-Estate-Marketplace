@@ -22,11 +22,11 @@ function getUsers() {
 }
 
 // Variable to store the property ID to be deleted
-let propertyIdToDelete = null;
+let userIdToDelete = null;
 
 // Function to show delete confirmation modal
 function deleteUser(propertyId) {
-  propertyIdToDelete = propertyId;
+  userIdToDelete = propertyId;
   const modalElement = document.getElementById("deletePropertyModal");
   const modal = new bootstrap.Modal(modalElement);
   modal.show();
@@ -34,12 +34,12 @@ function deleteUser(propertyId) {
 
 // Function to actually delete the property after confirmation
 function confirmDeleteUser() {
-  if (propertyIdToDelete === null) {
+  if (userIdToDelete === null) {
     return;
   }
 
   RestClient.delete(
-    `users/${propertyIdToDelete}`,
+    `users/${userIdToDelete}`,
     {},
     function (response) {
       getUsers();
@@ -52,12 +52,12 @@ function confirmDeleteUser() {
         document.getElementById("deletePropertyModal")
       );
       modal.hide();
-      propertyIdToDelete = null;
+      userIdToDelete = null;
     },
     function (error) {
       console.log("Error deleting user:", error);
       toastr.error(error.responseText || "Failed to delete user");
-      propertyIdToDelete = null;
+      userIdToDelete = null;
     }
   );
 }

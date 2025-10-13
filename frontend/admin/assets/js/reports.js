@@ -23,11 +23,11 @@ function getReports() {
 }
 
 // Variable to store the property ID to be deleted
-let propertyIdToDelete = null;
+let reportIdToDelete = null;
 
 // Function to show delete confirmation modal
 function deleteReport(propertyId) {
-  propertyIdToDelete = propertyId;
+  reportIdToDelete = propertyId;
   const modalElement = document.getElementById("deletePropertyModal");
   const modal = new bootstrap.Modal(modalElement);
   modal.show();
@@ -35,12 +35,12 @@ function deleteReport(propertyId) {
 
 // Function to actually delete the property after confirmation
 function confirmDeleteReport() {
-  if (propertyIdToDelete === null) {
+  if (reportIdToDelete === null) {
     return;
   }
 
   RestClient.delete(
-    `reports/${propertyIdToDelete}`,
+    `reports/${reportIdToDelete}`,
     {},
     function (response) {
       getReports();
@@ -53,12 +53,12 @@ function confirmDeleteReport() {
         document.getElementById("deletePropertyModal")
       );
       modal.hide();
-      propertyIdToDelete = null;
+      reportIdToDelete = null;
     },
     function (error) {
       console.log("Error deleting report:", error);
       toastr.error(error.responseText || "Failed to delete report");
-      propertyIdToDelete = null;
+      reportIdToDelete = null;
     }
   );
 }
