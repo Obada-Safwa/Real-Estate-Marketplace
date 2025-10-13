@@ -37,13 +37,8 @@ function loadPropertyDetails(propertyId) {
         // Display property details
         displayPropertyDetails(property);
 
-        // Display property images if available
-        if (property.images && property.images.length > 0) {
-          displayPropertyImages(property.images);
-        } else {
-          // Display default image if no images are available
-          displayDefaultImage();
-        }
+        displayDefaultImage(property.image_url);
+
         console.log("property.user_details:", response["user_details"]);
         // Display user/seller details if available
         if (response["user_details"]) {
@@ -124,59 +119,59 @@ function displayPropertyDetails(property) {
  * Displays property images in the carousel
  * @param {Array} images - Array of property image objects
  */
-function displayPropertyImages(images) {
-  const carouselInner = document.querySelector(".carousel-inner");
-  const carouselIndicators = document.querySelector(".carousel-indicators");
+// function displayPropertyImages(images) {
+//   const carouselInner = document.querySelector(".carousel-inner");
+//   const carouselIndicators = document.querySelector(".carousel-indicators");
 
-  if (carouselInner && images.length > 0) {
-    carouselInner.innerHTML = "";
+//   if (carouselInner && images.length > 0) {
+//     carouselInner.innerHTML = "";
 
-    if (carouselIndicators) {
-      carouselIndicators.innerHTML = "";
-    }
+//     if (carouselIndicators) {
+//       carouselIndicators.innerHTML = "";
+//     }
 
-    images.forEach((image, index) => {
-      // Create carousel item
-      const carouselItem = document.createElement("div");
-      carouselItem.className =
-        index === 0 ? "carousel-item active" : "carousel-item";
-      carouselItem.innerHTML = `
-        <img src="${
-          image.image_url
-        }" class="d-block w-100" alt="Property Image ${index + 1}">
-      `;
-      carouselInner.appendChild(carouselItem);
+//     images.forEach((image, index) => {
+//       // Create carousel item
+//       const carouselItem = document.createElement("div");
+//       carouselItem.className =
+//         index === 0 ? "carousel-item active" : "carousel-item";
+//       carouselItem.innerHTML = `
+//         <img src="${
+//           image.image_url
+//         }" class="d-block w-100" alt="Property Image ${index + 1}">
+//       `;
+//       carouselInner.appendChild(carouselItem);
 
-      // Create carousel indicator
-      if (carouselIndicators) {
-        const indicator = document.createElement("button");
-        indicator.type = "button";
-        indicator.setAttribute("data-bs-target", "#propertyCarousel");
-        indicator.setAttribute("data-bs-slide-to", index.toString());
+//       // Create carousel indicator
+//       if (carouselIndicators) {
+//         const indicator = document.createElement("button");
+//         indicator.type = "button";
+//         indicator.setAttribute("data-bs-target", "#propertyCarousel");
+//         indicator.setAttribute("data-bs-slide-to", index.toString());
 
-        if (index === 0) {
-          indicator.className = "active";
-          indicator.setAttribute("aria-current", "true");
-        }
+//         if (index === 0) {
+//           indicator.className = "active";
+//           indicator.setAttribute("aria-current", "true");
+//         }
 
-        indicator.setAttribute("aria-label", `Slide ${index + 1}`);
-        carouselIndicators.appendChild(indicator);
-      }
-    });
-  }
-}
+//         indicator.setAttribute("aria-label", `Slide ${index + 1}`);
+//         carouselIndicators.appendChild(indicator);
+//       }
+//     });
+//   }
+// }
 
 /**
  * Displays a default image when no property images are available
  */
-function displayDefaultImage() {
+function displayDefaultImage(image_url) {
   const carouselInner = document.querySelector(".carousel-inner");
   if (carouselInner) {
     carouselInner.innerHTML = "";
 
     const defaultImage = document.createElement("div");
     defaultImage.className = "carousel-item active";
-    defaultImage.innerHTML = `<img src="../../assets/images/banner.jpg" 
+    defaultImage.innerHTML = `<img src="${image_url}" 
                              class="d-block w-100" alt="Property Image">`;
     carouselInner.appendChild(defaultImage);
 
