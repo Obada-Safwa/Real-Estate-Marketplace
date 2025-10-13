@@ -561,11 +561,17 @@
     </script> -->
     <script src="../../services/property_details_service.js"></script>
     <scr src="../../services/index.js"></scr>
-    <scr>
-      // Get property ID from URL parameter const urlParams = new
-      URLSearchParams(window.location.search); const propertyId =
-      urlParams.get("id"); if (propertyId) { loadPropertyDetails(propertyId); }
-      else { console.error("No property ID found in URL"); }
-    </scr>
+    <script src="../../services/index.js"></script>
+    <script>
+      // Get property ID from URL parameter
+      const urlParams = new URLSearchParams(window.location.search);
+      const propertyId = urlParams.get("id");
+
+      if (propertyId) {
+        loadPropertyDetails(propertyId);
+      } else {
+        console.error("No property ID found in URL");
+      }
+    </script>
   </body>
 </html>
