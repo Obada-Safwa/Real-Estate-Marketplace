@@ -491,6 +491,7 @@
     <script src="../../utils/constants.js"></script>
     <script src="../../utils/rest_client.js"></script>
     <script src="../../utils/utils.js"></script>
+    <script src="../../utils/form_validation.js"></script>
     <!-- Property Details Script -->
     <!-- <script>
       // This script will help debug any issues
@@ -559,17 +560,12 @@
       });
     </script> -->
     <script src="../../services/property_details_service.js"></script>
-    <script src="../../services/index.js"></script>
-    <script>
-      // Get property ID from URL parameter
-      const urlParams = new URLSearchParams(window.location.search);
-      const propertyId = urlParams.get("id");
-
-      if (propertyId) {
-        loadPropertyDetails(propertyId);
-      } else {
-        console.error("No property ID found in URL");
-      }
-    </script>
+    <scr src="../../services/index.js"></scr>
+    <scr>
+      // Get property ID from URL parameter const urlParams = new
+      URLSearchParams(window.location.search); const propertyId =
+      urlParams.get("id"); if (propertyId) { loadPropertyDetails(propertyId); }
+      else { console.error("No property ID found in URL"); }
+    </scr>
   </body>
 </html>
