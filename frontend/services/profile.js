@@ -17,7 +17,7 @@ function getProperties() {
         <td>${property.status}</td>
         <td style="display: flex; justify-content: center; align-items: center;">
           <div class="btn-group" >
-            <button class="btn btn-sm btn-outline-danger" onclick="deleteProperty(${property.id})">
+            <button class="btn btn-sm btn-outline-danger" onclick="deleteProperty(${property.property_id})">
               <i class="fas fa-trash"></i>
             </button>
           </div>
