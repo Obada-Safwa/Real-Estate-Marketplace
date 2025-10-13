@@ -14,7 +14,11 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!Utils.get_from_localstorage("user")) {
     console.log("user not found");
     window.location.reload();
-    window.location.href = "pages/login.html";
+    if (window.location.href !== "pages/propertydetails.html") {
+      window.location.href = "../pages/login.html";
+    } else {
+      window.location.href = "pages/login.html";
+    }
   }
 
   // Initialize Add Property modal
