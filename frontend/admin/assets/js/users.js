@@ -10,7 +10,7 @@ function getUsers() {
         <td>${user.role}</td>
         <td>
           <div class="btn-group">
-            <button class="btn btn-sm btn-outline-danger" onclick="deleteProperty(${user.id})">
+            <button class="btn btn-sm btn-outline-danger" onclick="deleteUser(${user.id})">
               <i class="fas fa-trash"></i>
             </button>
           </div>
@@ -25,7 +25,7 @@ function getUsers() {
 let propertyIdToDelete = null;
 
 // Function to show delete confirmation modal
-function deleteProperty(propertyId) {
+function deleteUser(propertyId) {
   propertyIdToDelete = propertyId;
   const modalElement = document.getElementById("deletePropertyModal");
   const modal = new bootstrap.Modal(modalElement);
@@ -33,7 +33,7 @@ function deleteProperty(propertyId) {
 }
 
 // Function to actually delete the property after confirmation
-function confirmDeleteProperty() {
+function confirmDeleteUser() {
   if (propertyIdToDelete === null) {
     return;
   }

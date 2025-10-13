@@ -105,14 +105,14 @@
     </div>
   </div>
 </div>
-<script src="assets/js/users.js"></script>
+<!-- <script src="assets/js/users.js"></script> -->
 <script>
   getUsers();
 
   setTimeout(function () {
     const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
     if (confirmDeleteBtn) {
-      confirmDeleteBtn.addEventListener("click", confirmDeleteProperty);
+      confirmDeleteBtn.addEventListener("click", confirmDeleteUser);
     } else {
       console.error("confirmDeleteBtn element not found!");
     }

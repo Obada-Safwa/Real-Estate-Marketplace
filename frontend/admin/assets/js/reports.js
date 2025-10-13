@@ -11,7 +11,7 @@ function getReports() {
         <td>${report.status}</td>
         <td>
           <div class="btn-group">
-            <button class="btn btn-sm btn-outline-danger" onclick="deleteProperty(${report.id})">
+            <button class="btn btn-sm btn-outline-danger" onclick="deleteReport(${report.id})">
               <i class="fas fa-trash"></i>
             </button>
           </div>
@@ -26,7 +26,7 @@ function getReports() {
 let propertyIdToDelete = null;
 
 // Function to show delete confirmation modal
-function deleteProperty(propertyId) {
+function deleteReport(propertyId) {
   propertyIdToDelete = propertyId;
   const modalElement = document.getElementById("deletePropertyModal");
   const modal = new bootstrap.Modal(modalElement);
@@ -34,7 +34,7 @@ function deleteProperty(propertyId) {
 }
 
 // Function to actually delete the property after confirmation
-function confirmDeleteProperty() {
+function confirmDeleteReport() {
   if (propertyIdToDelete === null) {
     return;
   }
