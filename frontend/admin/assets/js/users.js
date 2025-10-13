@@ -27,7 +27,7 @@ let userIdToDelete = null;
 // Function to show delete confirmation modal
 function deleteUser(propertyId) {
   userIdToDelete = propertyId;
-  const modalElement = document.getElementById("deletePropertyModal");
+  const modalElement = document.getElementById("deleteUserModal");
   const modal = new bootstrap.Modal(modalElement);
   modal.show();
 }
@@ -49,7 +49,7 @@ function confirmDeleteUser() {
 
       // Close the modal and reset the property ID
       const modal = bootstrap.Modal.getInstance(
-        document.getElementById("deletePropertyModal")
+        document.getElementById("deleteUserModal")
       );
       modal.hide();
       userIdToDelete = null;
