@@ -33,4 +33,12 @@ class ReportsDao extends BaseDao
             [":status" => $status]
         );
     }
+
+    public function alter_status($status, $id)
+    {
+        return $this->query(
+            "UPDATE Reports SET status = :status WHERE id = :id",
+            [":status" => $status, ":id" => $id]
+        );
+    }
 }

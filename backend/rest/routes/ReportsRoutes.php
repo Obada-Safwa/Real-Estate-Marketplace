@@ -157,3 +157,58 @@ Flight::route("PUT /reports/@id", function ($id) {
     $request = Flight::request()->data->getData();
     Flight::json(Flight::reports_service()->update($request, $id, "id"));
 });
+
+/**
+ * @OA\Patch(
+ *     path="/reports/{status}/{id}",
+ *     summary="Update the status of a report",
+ *     description="Allows an admin to update the status of a report by ID.",
+ *     tags={"Reports"},
+ *     security={
+ *          {"ApiKey": {}}
+ *      },
+ *     @OA\Parameter(
+ *         name="status",
+ *         in="path",
+ *         required=true,
+ *         description="New status value for the report",
+ *         @OA\Schema(type="string")
+ *     ),
+ *     @OA\Parameter(
+ *         name="id",
+ *         in="path",
+ *         required=true,
+ *         description="ID of the report to update",
+ *         @OA\Schema(type="integer")
+ *     ),
+ *     @OA\Response(
+ *         response=200,
+ *         description="Report status updated successfully",
+ *         @OA\JsonContent(
+ *             type="object",
+ *             @OA\Property(property="message", type="string", example="Report status updated successfully"),
+ *             @OA\Property(property="data", type="object")
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=403,
+ *         description="Unauthorized - only admin can perform this action"
+ *     ),
+ *     @OA\Response(
+ *         response=400,
+ *         description="Invalid input"
+ *     ),
+ *     @OA\Response(
+ *         response=500,
+ *         description="Internal server error"
+ *     )
+ * )
+ */
+Flight::route("PATCH /reports/@status/@id", function ($status, $id) {
+    Flight::auth_middleware()->authorizeRole('admin');
+    $result = Flight::reports_service()->alter_status($status, $id);
+    Flight::json([
+        "message" => "Report status successfully altered",
+        "data" => $result
+    ]);
+});
