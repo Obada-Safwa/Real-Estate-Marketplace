@@ -28,7 +28,7 @@ let reportIdToDelete = null;
 // Function to show delete confirmation modal
 function deleteReport(propertyId) {
   reportIdToDelete = propertyId;
-  const modalElement = document.getElementById("deletePropertyModal");
+  const modalElement = document.getElementById("deleteReportModal");
   const modal = new bootstrap.Modal(modalElement);
   modal.show();
 }
@@ -50,7 +50,7 @@ function confirmDeleteReport() {
 
       // Close the modal and reset the property ID
       const modal = bootstrap.Modal.getInstance(
-        document.getElementById("deletePropertyModal")
+        document.getElementById("deleteReportModal")
       );
       modal.hide();
       reportIdToDelete = null;
