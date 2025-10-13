@@ -44,7 +44,7 @@ class PropertiesDao extends BaseDao
     public function get_report_with_property($id)
     {
         return $this->query(
-            "SELECT 
+            "SELECT Properties.title as property_title,
   Reports.id AS report_id,
   Reports.status AS report_status,
   Reports.reason AS report_reason,

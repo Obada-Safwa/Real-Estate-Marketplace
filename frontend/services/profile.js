@@ -30,22 +30,25 @@ function getProperties() {
   });
 }
 
-// document
-//   .getElementById("add-property-button")
-//   .addEventListener("click", function () {
-//     const modal = new bootstrap.Modal(
-//       document.getElementById("propertyEditModal")
-//     );
-//     modal.show();
-//   });
-
-// FormValidation.validate("#propertyEditForm", {}, function (data) {
-//   console.log(data);
-//   RestClient.post("properties", data, function (response) {
-//     console.log(response);
-//     location.reload();
-//   });
-// });
+function getPropertiesWithReport() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user.data.id);
+  userId = user.data.id;
+  RestClient.get(`properties/reports/${userId}`, function (response) {
+    let row = ``;
+    response.forEach((property) => {
+      console.log(property);
+      row += `
+      <tr>
+        <td>${property.property_title}</td>
+        <td>Your Property was reported and Deleted.\nReason: ${property.report_reason}</td>
+        <td>${property.report_status}</td>
+      </tr>`;
+    });
+    document.getElementById("reportsTableBody").innerHTML = row;
+    console.log(".Reports Table Body", response);
+  });
+}
 
 // Variable to store the property ID to be deleted
 let propertyIdToDelete = null;
