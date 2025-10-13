@@ -37,7 +37,7 @@ function loadPropertyDetails(propertyId) {
         // Display property details
         displayPropertyDetails(property);
 
-        displayDefaultImage(property.image_url);
+        displayDefaultImage(images.image_url);
 
         console.log("property.user_details:", response["user_details"]);
         // Display user/seller details if available
