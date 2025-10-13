@@ -117,7 +117,7 @@ function alterReportStatus(reportId, status) {
     `reports/${status}/${reportId}`,
     {},
     function (response) {
-      // getReports();
+      getReports();
       // toastr.success("Report status altered successfully");
       console.log("Report status altered:", response);
     },
