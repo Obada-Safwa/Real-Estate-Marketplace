@@ -42,6 +42,7 @@ $(document).ready(function () {
         required: true,
         minlength: 5,
         maxlength: 100,
+        color: "red",
       },
       description: {
         required: true,
