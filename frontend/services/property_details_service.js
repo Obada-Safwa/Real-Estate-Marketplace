@@ -74,7 +74,7 @@ function displayPropertyDetails(property) {
   const priceSection = document.querySelector(".property-price");
   if (priceSection) {
     priceSection.innerHTML = `
-      <div class="price">${property.price} BAM</div>
+      <div class="price">${property.price.toLocaleString("de-DE")} BAM</div>
       <div class="property-type">${property.type.toUpperCase()}</div>
     `;
   }

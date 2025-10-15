@@ -268,7 +268,7 @@ function displayProperties(propertiesToDisplay, page) {
         </div>
         <div class="price">
               <span>${property.type.toUpperCase()}</span>
-              <span>${property.price} BAM</span>
+              <span>${property.price.toLocaleString("de-DE")} BAM</span>
         </div>
       </div>
     `;

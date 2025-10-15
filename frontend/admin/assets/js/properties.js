@@ -7,13 +7,15 @@ function getProperties() {
       <tr>
         <td>${property.id}</td>
         <td>${property.title}</td>
-        <td>${property.price} BAM</td>
+        <td>${property.price.toLocaleString("de-DE")} BAM</td>
         <td>${property.location}</td>
         <td>${property.status}</td>
         <td>${property.type}</td>
         <td>
           <div class="btn-group">
-            <button class="btn btn-sm btn-outline-danger" onclick="deleteProperty(${property.property_id})">
+            <button class="btn btn-sm btn-outline-danger" onclick="deleteProperty(${
+              property.property_id
+            })">
               <i class="fas fa-trash"></i>
             </button>
           </div>
