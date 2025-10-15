@@ -7,9 +7,9 @@ var FormValidation = {
     return result;
   },
   validate: function (form_selector, form_rules, form_submit_handler_callback) {
-    const form_object = $(form_selector);
-    const error = $(".alert-danger", form_object);
-    const success = $(".alert-success", form_object);
+    let form_object = $(form_selector);
+    let error = $(".alert-danger", form_object);
+    let success = $(".alert-success", form_object);
     $(form_object).validate({
       rules: form_rules,
 
