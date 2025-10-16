@@ -170,13 +170,12 @@ var PropertiesServices = {
           displayProperties(filteredProperties, 1);
         } else {
           cardSelector.innerHTML = `
-  <div class="text-center py-5 my-5">
-    <i class="fas fa-search fa-3x mb-3 text-muted"></i>
-    <h4 class="text-muted mb-3">No Properties Found</h4>
-    <p class="text-muted">Try adjusting your search filters to find what you're looking for.</p>
-    <button class="btn btn-outline-primary mt-2" onclick="location.reload()">
-      <i class="fas fa-sync-alt me-2"></i>Reset Filters
-    </button>
+  <div class="d-flex justify-content-center align-items-center" style="min-height: 50vh;">
+    <div class="text-center">
+      <i class="fas fa-search fa-3x mb-3 text-muted"></i>
+      <h4 class="text-muted mb-3">No Properties Found</h4>
+      <p class="text-muted">Try adjusting your search filters to find what you're looking for.</p>
+    </div>
   </div>
 `;
         }
