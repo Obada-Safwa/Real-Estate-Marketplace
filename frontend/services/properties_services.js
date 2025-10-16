@@ -166,7 +166,11 @@ var PropertiesServices = {
         console.log("Filtered properties count:", filteredProperties.length);
 
         // Display first page of properties
-        displayProperties(filteredProperties, 1);
+        if (filteredProperties.length > 0) {
+          displayProperties(filteredProperties, 1);
+        } else {
+          cardSelector.innerHTML = "<p>No properties found</p>";
+        }
 
         // Show or hide load more button based on number of properties
         toggleLoadMoreButton();
