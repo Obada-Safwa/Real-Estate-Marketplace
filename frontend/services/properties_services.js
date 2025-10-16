@@ -159,6 +159,7 @@ var PropertiesServices = {
           ) {
             propertiesCount++;
             filteredProperties.push(property);
+            console.log("filteredProperties", filteredProperties);
           }
         });
 
