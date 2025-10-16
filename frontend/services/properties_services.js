@@ -170,14 +170,14 @@ var PropertiesServices = {
           displayProperties(filteredProperties, 1);
         } else {
           cardSelector.innerHTML = `
-  <div class="d-flex justify-content-center align-items-center" style="min-height: 50vh;">
-    <div class="text-center">
-      <i class="fas fa-search fa-3x mb-3 text-muted"></i>
-      <h4 class="text-muted mb-3">No Properties Found</h4>
-      <p class="text-muted">Try adjusting your search filters to find what you're looking for.</p>
-    </div>
-  </div>
-`;
+          <div class="w-100 h-100 d-flex justify-content-center align-items-center" style="min-height: 50vh;">
+            <div class="text-center">
+              <i class="fas fa-search fa-3x mb-3 text-muted"></i>
+              <h4 class="text-muted mb-3">No Properties Found</h4>
+              <p class="text-muted">Try adjusting your search filters to find what you're looking for.</p>
+            </div>
+          </div>
+        `;
         }
 
         // Show or hide load more button based on number of properties
