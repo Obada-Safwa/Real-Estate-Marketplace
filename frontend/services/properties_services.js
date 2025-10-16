@@ -214,7 +214,7 @@ function displayProperties(propertiesToDisplay, page) {
     }
     cardSelector.innerHTML = "";
   }
-
+  console.log("paginatedProperties", paginatedProperties);
   // Display properties
   paginatedProperties.forEach((property) => {
     if (property.status != "sold") {
