@@ -28,6 +28,12 @@ $(document).ready(function () {
     },
     onReady: function () {
       console.log("Properties view loaded");
+      const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
+      if (confirmDeleteBtn) {
+        confirmDeleteBtn.addEventListener("click", confirmDeleteProperty);
+      } else {
+        console.error("confirmDeleteBtn element not found!");
+      }
       // loadPropertiesData();
     },
   });
