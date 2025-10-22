@@ -38,13 +38,13 @@ function getPropertiesWithReport() {
   userId = user.data.id;
   RestClient.get(`reports/reciever/${userId}`, function (response) {
     let row = ``;
-    response.forEach((property) => {
-      console.log(property);
+    response.forEach((report) => {
+      console.log(report);
       row += `
       <tr>
-        <td>${property.property_title}</td>
-        <td>Your Property was reported and Deleted.\nReason: ${property.report_reason}</td>
-        <td>${property.report_status}</td>
+        <td>${report.title}</td>
+        <td>Your Property was reported and Deleted.\nReason: ${report.reason}</td>
+        <td>${report.status}</td>
       </tr>`;
     });
     document.getElementById("reportsTableBody").innerHTML = row;
