@@ -320,6 +320,12 @@ function toggleLoadMoreButton() {
 function showReportPopup(propertyId) {
   // Create modal if it doesn't exist
   let modal = document.getElementById("report-modal");
+  let form = document.getElementById("report-form");
+
+  if (form) {
+    const propertyIdInput = form.querySelector("#property-id");
+    propertyIdInput.value = propertyId;
+  }
   if (!modal) {
     modal = document.createElement("div");
     modal.id = "report-modal";
