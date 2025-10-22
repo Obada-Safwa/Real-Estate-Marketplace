@@ -323,8 +323,10 @@ function showReportPopup(propertyId) {
   let form = document.getElementById("report-form");
 
   if (form) {
-    const propertyIdInput = form.querySelector("#property-id");
-    propertyIdInput.value = propertyId;
+    const propertyIdInput = document.querySelector("#property-id");
+    if (propertyIdInput) {
+      propertyIdInput.value = propertyId;
+    }
   }
   if (!modal) {
     modal = document.createElement("div");
