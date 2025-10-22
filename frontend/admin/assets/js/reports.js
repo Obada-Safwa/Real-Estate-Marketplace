@@ -48,7 +48,7 @@ function confirmDeletePropertyOfReport() {
   }
 
   RestClient.delete(
-    `reports/${propertyOfReportIdToDelete}`,
+    `properties/${propertyOfReportIdToDelete}`,
     {},
     function (response) {
       getReports();

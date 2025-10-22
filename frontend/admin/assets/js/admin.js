@@ -57,6 +57,24 @@ $(document).ready(function () {
       console.log("Settings view created");
     },
     onReady: function () {
+      const confirmDeleteReportBtn = document.getElementById(
+        "confirmDeleteReportBtn"
+      );
+      if (confirmDeleteReportBtn) {
+        confirmDeleteReportBtn.addEventListener("click", confirmDeleteReport);
+      } else {
+        console.error("confirmDeleteReportBtn element not found!");
+      }
+
+      const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
+      if (confirmDeleteBtn) {
+        confirmDeleteBtn.addEventListener(
+          "click",
+          confirmDeletePropertyOfReport
+        );
+      } else {
+        console.error("confirmDeleteBtn element not found!");
+      }
       console.log("Settings view loaded");
     },
   });
