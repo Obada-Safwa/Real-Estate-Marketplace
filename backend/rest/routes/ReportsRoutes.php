@@ -212,3 +212,28 @@ Flight::route("PATCH /reports/@status/@id", function ($status, $id) {
         "data" => $result
     ]);
 });
+
+/**
+ * @OA\Get(
+ *      path="/reports/reciever/{reciever_id}",
+ *      tags={"Reports"},
+ *      summary="Get reports by reciever ID",
+ *      security={
+ *          {"ApiKey": {}}
+ *      },
+ *      @OA\Parameter(
+ *          name="reciever_id",
+ *          in="path",
+ *          required=true,
+ *          description="ID of the reciever",
+ *          @OA\Schema(type="integer", example=1)
+ *      ),
+ *      @OA\Response(
+ *           response=200,
+ *           description="Reports successfully retrieved"
+ *       )
+ * )
+ */
+Flight::route("GET /reports/reciever/@reciever_id", function ($reciever_id) {
+    Flight::json(Flight::reports_service()->get_report_by_reciever_id($reciever_id));
+});

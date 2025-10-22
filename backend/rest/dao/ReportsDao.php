@@ -41,4 +41,12 @@ class ReportsDao extends BaseDao
             [":status" => $status, ":id" => $id]
         );
     }
+
+    public function get_report_by_reciever_id($reciever_id)
+    {
+        return $this->query(
+            "SELECT * FROM Reports WHERE reciever_id = :reciever_id",
+            [":reciever_id" => $reciever_id]
+        );
+    }
 }

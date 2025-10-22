@@ -25,7 +25,13 @@ class ReportsServices extends BaseServices
         }
 
         $entity['receiver_id'] = $property['user_id'];
+        $entity['title'] = $property['title'];
 
         return $this->dao->add($entity);
+    }
+
+    public function get_report_by_reciever_id($reciever_id)
+    {
+        return $this->dao->get_report_by_reciever_id($reciever_id);
     }
 }
