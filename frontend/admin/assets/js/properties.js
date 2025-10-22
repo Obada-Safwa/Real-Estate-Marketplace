@@ -5,7 +5,7 @@ function getProperties() {
     response.forEach((property) => {
       row += `
       <tr>
-        <td>${property.id}</td>
+        <td>${property.property_id}</td>
         <td>${property.title}</td>
         <td>${property.price.toLocaleString("de-DE")} BAM</td>
         <td>${property.location}</td>
