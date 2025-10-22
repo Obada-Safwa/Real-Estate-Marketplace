@@ -39,6 +39,9 @@ function getPropertiesWithReport() {
   RestClient.get(`reports/reciever/${userId}`, function (response) {
     let row = ``;
     response.forEach((report) => {
+      if (report.status != "reviewed") {
+        return;
+      }
       console.log(report);
       row += `
       <tr>
