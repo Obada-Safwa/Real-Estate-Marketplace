@@ -18,19 +18,14 @@ class ReportsServices extends BaseServices
 
     public function add($entity)
     {
-        // Make sure property_id exists
-        if (empty($entity['property_id'])) {
-            throw new Exception("property_id is required to create a report");
-        }
-
-        // Fetch property details
         $property = $this->propertiesServices->get_by_id($entity['property_id']);
-        if (empty($property) || empty($property['user_id'])) {
-            throw new Exception("Invalid property or property owner not found");
+
+        if (isset($property[0])) {
+            $property = $property[0];
         }
 
-        // Correctly add receiver_id
         $entity['receiver_id'] = $property['user_id'];
+
         return $this->dao->add($entity);
     }
 }
