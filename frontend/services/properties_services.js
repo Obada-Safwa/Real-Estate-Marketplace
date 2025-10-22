@@ -341,7 +341,6 @@ function showReportPopup(propertyId) {
         <input type="hidden" id="property-id" name="property_id" value="${propertyId}">
         <div class="report-buttons">
           <button type="submit" class="report-submit-btn" id="report-submit-btn">Submit Report</button>
-          <button class="report-cancel-btn" onclick="closeReportPopup()">Cancel</button>
         </div>
       </div>
     </form>
