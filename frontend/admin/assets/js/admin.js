@@ -24,9 +24,11 @@ $(document).ready(function () {
     view: "properties", // No # prefix in the route definition
     load: "properties.html",
     onCreate: function () {
+      getProperties();
       console.log("Properties view created");
     },
     onReady: function () {
+      getProperties();
       console.log("Properties view loaded");
       const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
       if (confirmDeleteBtn) {
