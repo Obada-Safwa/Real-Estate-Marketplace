@@ -24,7 +24,7 @@ class ReportsServices extends BaseServices
             $property = $property[0];
         }
 
-        $entity['receiver_id'] = $property['user_id'];
+        $entity['reciever_id'] = $property['user_id'];
         $entity['title'] = $property['title'];
 
         return $this->dao->add($entity);
