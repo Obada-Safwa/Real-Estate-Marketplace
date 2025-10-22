@@ -36,7 +36,7 @@ function getPropertiesWithReport() {
   const user = JSON.parse(localStorage.getItem("user"));
   console.log(user.data.id);
   userId = user.data.id;
-  RestClient.get(`properties/reports/${userId}`, function (response) {
+  RestClient.get(`reports/reciever/${userId}`, function (response) {
     let row = ``;
     response.forEach((property) => {
       console.log(property);
