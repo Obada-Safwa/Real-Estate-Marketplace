@@ -52,12 +52,6 @@ function confirmDeletePropertyOfReport() {
     {},
     function (response) {
       // Hide the delete icon for this property
-      const btn = document.querySelector(
-        `button[onclick="deletePropertyOfReport(${propertyOfReportIdToDelete}, ${reportIdToAlter})"]`
-      );
-      if (btn) {
-        btn.style.display = "none";
-      }
 
       // Update report status
       alterReportStatus(reportIdToAlter, "reviewed");
@@ -122,6 +116,12 @@ function confirmDeleteReport() {
 }
 
 function alterReportStatus(reportId, status) {
+  const btn = document.querySelector(
+    `button[onclick="deletePropertyOfReport(${propertyOfReportIdToDelete}, ${reportIdToAlter})"]`
+  );
+  if (btn) {
+    btn.style.display = "none";
+  }
   RestClient.patch(
     `reports/${status}/${reportId}`,
     {},
