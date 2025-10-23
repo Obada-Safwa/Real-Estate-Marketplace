@@ -54,16 +54,19 @@ function checkAndHideDeletedProperties() {
   buttons.forEach((btn) => {
     const propertyId = btn.getAttribute("data-property-id");
 
-    RestClient.get(
-      `properties/${propertyId}`,
-      function (response) {
-        // Property exists — do nothing
-      },
-      function (error) {
-        // Property not found or deleted — hide the delete button
-        btn.style.display = "none";
-      }
-    );
+    if (propertyId === null) {
+      btn.style.display = "none";
+    }
+    // RestClient.get(
+    //   `properties/${propertyId}`,
+    //   function (response) {
+    //     // Property exists — do nothing
+    //   },
+    //   function (error) {
+    //     // Property not found or deleted — hide the delete button
+    //     btn.style.display = "none";
+    //   }
+    // );
   });
 }
 
