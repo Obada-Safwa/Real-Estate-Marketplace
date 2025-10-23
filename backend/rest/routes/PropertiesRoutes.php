@@ -110,21 +110,8 @@ Flight::route("GET /properties/@id", function ($id) {
  * )
  */
 Flight::route("DELETE /properties/@id", function ($id) {
-    $user = Flight::get('user'); // get the logged-in user
-    $property = Flight::properties_service()->get_by_id($id);
-
-    if (!$property) {
-        Flight::json(["error" => "Property not found"], 404);
-        return;
-    }
-
-    // Allow admin or owner
-    if ($user['role'] === 'admin' || $user['id'] == $property['user_id']) {
-        Flight::properties_service()->delete($id, "id");
-        Flight::json(["message" => "Property deleted successfully"]);
-    } else {
-        Flight::json(["error" => "Unauthorized"], 403);
-    }
+    Flight::auth_middleware()->authorizeRole('admin');
+    Flight::json(Flight::properties_service()->delete($id, "id"));
 });
 
 
