@@ -109,10 +109,16 @@ Flight::route("GET /properties/@id", function ($id) {
  *       )
  * )
  */
-Flight::route("DELETE /properties/@id", function ($id) {
-    Flight::auth_middleware()->authorizeRole('admin');
-    Flight::json(Flight::properties_service()->delete($id, "id"));
-});
+Flight::route(
+    "POST /properties",
+    function () {
+        $request = Flight::request()->data->getData();
+        $user = Flight::get('user');
+        $request['user_id'] = $user->id;
+        $request['status'] = 'available';
+        Flight::json(Flight::properties_service()->addProperty($request));
+    }
+);
 
 
 /**
