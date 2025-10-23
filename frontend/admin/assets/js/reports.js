@@ -1,31 +1,69 @@
 function getReports() {
-  RestClient.get("reports", function (response) {
+  RestClient.get("reports", async function (response) {
     let row = ``;
-    response.forEach((report) => {
+
+    for (const report of response) {
       row += `
-      <tr>
-        <td>${report.id}</td>
-        <td>${report.user_id}</td>
-        <td>${report.property_id}</td>
-        <td>${report.reason}</td>
-        <td>${report.status}</td>
-        <td>
-          <div class="btn-group">
-            <button class="btn btn-sm btn-outline-danger" onclick="deleteReport(${report.id})">
-              <i class="fas fa-trash"></i>
-            </button>
-          </div>
-        </td>
-        <td>
-          <div class="btn-group">
-            <button class="btn btn-sm btn-outline-danger" onclick="deletePropertyOfReport(${report.property_id}, ${report.id})">
-              <i class="fas fa-trash"></i>
-            </button>
-          </div>
-        </td>
-      </tr>`;
-    });
+        <tr>
+          <td>${report.id}</td>
+          <td>${report.user_id}</td>
+          <td>${report.property_id}</td>
+          <td>${report.reason}</td>
+          <td>${report.status}</td>
+          <td>
+            <div class="btn-group">
+              <button class="btn btn-sm btn-outline-danger" onclick="deleteReport(${report.id})">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </td>
+          <td>
+            <div class="btn-group">
+              <button class="btn btn-sm btn-outline-danger delete-property-btn"
+                      data-property-id="${report.property_id}"
+                      data-report-id="${report.id}">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </td>
+        </tr>`;
+    }
+
     document.querySelector("#reportsTableBody").innerHTML = row;
+
+    // Attach event listeners to property delete buttons
+    document.querySelectorAll(".delete-property-btn").forEach((btn) => {
+      const propertyId = btn.getAttribute("data-property-id");
+      const reportId = btn.getAttribute("data-report-id");
+      btn.addEventListener("click", () =>
+        deletePropertyOfReport(propertyId, reportId)
+      );
+    });
+
+    // ✅ After table is rendered, check which properties still exist
+    checkAndHideDeletedProperties();
+  });
+}
+
+// 🔍 Check if properties exist, hide buttons for deleted ones
+function checkAndHideDeletedProperties() {
+  const buttons = document.querySelectorAll(".delete-property-btn");
+
+  buttons.forEach((btn) => {
+    const propertyId = btn.getAttribute("data-property-id");
+
+    RestClient.get(
+      `properties/${propertyId}`,
+      function (response) {
+        // Property exists — do nothing
+      },
+      function (error) {
+        // Property not found or deleted — hide the delete button
+        if (error.status === 404 || error.status === 500) {
+          btn.style.display = "none";
+        }
+      }
+    );
   });
 }
 
@@ -51,7 +89,11 @@ function confirmDeletePropertyOfReport() {
     `properties/${propertyOfReportIdToDelete}`,
     {},
     function (response) {
-      // Hide the delete icon for this property
+      // Hide the delete icon immediately for this property
+      const btn = document.querySelector(
+        `.delete-property-btn[data-property-id="${propertyOfReportIdToDelete}"]`
+      );
+      if (btn) btn.style.display = "none";
 
       // Update report status
       alterReportStatus(reportIdToAlter, "reviewed");
@@ -67,25 +109,23 @@ function confirmDeletePropertyOfReport() {
       propertyOfReportIdToDelete = null;
     },
     function (error) {
-      console.log("Error deleting report:", error);
-      toastr.error(error.responseText || "Failed to delete report");
+      console.log("Error deleting property:", error);
+      toastr.error(error.responseText || "Failed to delete property");
       propertyOfReportIdToDelete = null;
     }
   );
 }
 
-// Variable to store the property ID to be deleted
+// Variable to store the report ID to be deleted
 let reportIdToDelete = null;
 
-// Function to show delete confirmation modal
-function deleteReport(propertyId) {
-  reportIdToDelete = propertyId;
+function deleteReport(reportId) {
+  reportIdToDelete = reportId;
   const modalElement = document.getElementById("deleteReportModal");
   const modal = new bootstrap.Modal(modalElement);
   modal.show();
 }
 
-// Function to actually delete the property after confirmation
 function confirmDeleteReport() {
   if (reportIdToDelete === null) {
     return;
@@ -96,11 +136,9 @@ function confirmDeleteReport() {
     {},
     function (response) {
       getReports();
-      // alterReportStatus(reportIdToDelete, "reviewed");
       toastr.success("Report deleted successfully");
       console.log("Report deleted:", response);
 
-      // Close the modal and reset the property ID
       const modal = bootstrap.Modal.getInstance(
         document.getElementById("deleteReportModal")
       );
@@ -116,23 +154,14 @@ function confirmDeleteReport() {
 }
 
 function alterReportStatus(reportId, status) {
-  const btn = document.querySelector(
-    `button[onclick="deletePropertyOfReport(${propertyOfReportIdToDelete}, ${reportIdToAlter})"]`
-  );
-  if (btn) {
-    btn.style.display = "none";
-  }
   RestClient.patch(
     `reports/${status}/${reportId}`,
     {},
     function (response) {
-      getReports();
-      // toastr.success("Report status altered successfully");
       console.log("Report status altered:", response);
     },
     function (error) {
       console.log("Error altering report status:", error);
-      // toastr.error(error.responseText || "Failed to alter report status");
     }
   );
 }
