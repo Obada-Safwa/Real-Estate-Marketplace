@@ -41,9 +41,8 @@ function getReports() {
     });
 
     // ✅ After table is rendered, check which properties still exist
-    setTimeout(() => {
-      checkAndHideDeletedProperties();
-    }, 1000);
+
+    checkAndHideDeletedProperties();
   });
 }
 
