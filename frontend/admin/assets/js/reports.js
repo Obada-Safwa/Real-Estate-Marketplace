@@ -43,7 +43,7 @@ function getReports() {
     // ✅ After table is rendered, check which properties still exist
     setTimeout(() => {
       checkAndHideDeletedProperties();
-    }, 100);
+    }, 1000);
   });
 }
 
