@@ -1,53 +1,58 @@
+// ============================
+// Users.js – SPA Friendly
+// ============================
+
+// Store the ID of the user to delete
+let userIdToDelete = null;
+
+// Fetch and render all users
 function getUsers() {
   RestClient.get("users", function (response) {
-    let row = ``;
+    let rows = "";
     response.forEach((user) => {
-      row += `
-      <tr>
-        <td>${user.id}</td>
-        <td>${user.name}</td>
-        <td>${user.email}</td>
-        <td>${user.role}</td>
-        <td>
-          <div class="btn-group">
-            <button class="btn btn-sm btn-outline-danger" onclick="deleteUser(${user.id})">
-              <i class="fas fa-trash"></i>
-            </button>
-          </div>
-        </td>
-      </tr>`;
+      rows += `
+        <tr>
+          <td>${user.id}</td>
+          <td>${user.name}</td>
+          <td>${user.email}</td>
+          <td>${user.role}</td>
+          <td>
+            <div class="btn-group">
+              <button class="btn btn-sm btn-outline-danger delete-user-btn" data-user-id="${user.id}">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </td>
+        </tr>`;
     });
-    document.querySelector("#usersTableBody").innerHTML = row;
+
+    document.querySelector("#usersTableBody").innerHTML = rows;
   });
 }
 
-// Variable to store the property ID to be deleted
-let userIdToDelete = null;
-
-// Function to show delete confirmation modal
-function deleteUser(propertyId) {
-  userIdToDelete = propertyId;
+// Open modal to confirm deletion
+function deleteUser(id) {
+  userIdToDelete = id;
   const modalElement = document.getElementById("deleteUserModal");
   const modal = new bootstrap.Modal(modalElement);
   modal.show();
 }
 
-// Function to actually delete the property after confirmation
+// Delete user after confirming
 function confirmDeleteUser() {
-  if (userIdToDelete === null) {
-    return;
-  }
+  if (!userIdToDelete) return;
 
   RestClient.delete(
     `users/${userIdToDelete}`,
     {},
     function (response) {
-      getUsers();
-
       toastr.success("User deleted successfully");
       console.log("User deleted:", response);
 
-      // Close the modal and reset the property ID
+      // Refresh table
+      getUsers();
+
+      // Close modal and reset ID
       const modal = bootstrap.Modal.getInstance(
         document.getElementById("deleteUserModal")
       );
@@ -55,9 +60,24 @@ function confirmDeleteUser() {
       userIdToDelete = null;
     },
     function (error) {
-      console.log("Error deleting user:", error);
       toastr.error(error.responseText || "Failed to delete user");
+      console.log("Error deleting user:", error);
       userIdToDelete = null;
     }
   );
 }
+
+// ============================
+// Event Delegation
+// ============================
+
+// Trash icon click (opens modal)
+$(document).on("click", ".delete-user-btn", function () {
+  const userId = $(this).data("user-id");
+  deleteUser(userId);
+});
+
+// Confirm delete button in modal
+$(document).on("click", "#confirmDeleteBtn", function () {
+  confirmDeleteUser();
+});

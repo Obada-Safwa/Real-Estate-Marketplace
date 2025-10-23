@@ -41,14 +41,25 @@ $(document).ready(function () {
   });
 
   app.route({
-    view: "users", // No # prefix in the route definition
+    view: "users",
     load: "users.html",
     onCreate: function () {
       console.log("Users view created");
     },
     onReady: function () {
+      getUsers();
       console.log("Users view loaded");
-      // loadUsersData();
+
+      // ✅ Wait a bit for modal to exist
+      setTimeout(() => {
+        const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
+        if (confirmDeleteBtn) {
+          confirmDeleteBtn.addEventListener("click", confirmDeleteUser);
+          console.log("Delete user button listener attached");
+        } else {
+          console.error("confirmDeleteBtn element not found!");
+        }
+      }, 300); // 300ms delay works fine
     },
   });
 
@@ -60,6 +71,7 @@ $(document).ready(function () {
       console.log("Settings view created");
     },
     onReady: function () {
+      getReports();
       const confirmDeleteReportBtn = document.getElementById(
         "confirmDeleteReportBtn"
       );
