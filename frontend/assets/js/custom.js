@@ -24,6 +24,24 @@ $(document).ready(function () {
   app.route({
     view: "service",
     load: "service.html",
+    onCreate: function () {
+      console.log("Service view created");
+    },
+    onReady: function () {
+      // Load properties and reports for this user
+      getProperties();
+      getPropertiesWithReport();
+
+      // Attach delete listener after the content is loaded
+      const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
+      if (confirmDeleteBtn) {
+        confirmDeleteBtn.addEventListener("click", confirmDeleteProperty);
+      } else {
+        console.error("confirmDeleteBtn element not found!");
+      }
+
+      console.log("Service view loaded");
+    },
   });
   app.route({
     view: "propertydetails",
