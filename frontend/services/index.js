@@ -89,6 +89,10 @@ $(document).ready(function () {
         "properties",
         data,
         function (response) {
+          let propertiesToDisplay =
+            response + Utils.get_from_sessionstorage("properties");
+          let page = 1;
+          displayProperties(propertiesToDisplay, page);
           toastr.success("Property Added");
           console.log("Property Added", response);
         },
