@@ -41,7 +41,9 @@ function getReports() {
     });
 
     // ✅ After table is rendered, check which properties still exist
-    checkAndHideDeletedProperties();
+    setTimeout(() => {
+      checkAndHideDeletedProperties();
+    }, 100);
   });
 }
 
@@ -56,13 +58,10 @@ function checkAndHideDeletedProperties() {
       `properties/${propertyId}`,
       function (response) {
         // Property exists — do nothing
-        btn.style.display = "none";
       },
       function (error) {
         // Property not found or deleted — hide the delete button
-        if (error.status === 404 || error.status === 500) {
-          btn.style.display = "none";
-        }
+        btn.style.display = "none";
       }
     );
   });
