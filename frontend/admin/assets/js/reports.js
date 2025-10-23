@@ -51,12 +51,20 @@ function confirmDeletePropertyOfReport() {
     `properties/${propertyOfReportIdToDelete}`,
     {},
     function (response) {
-      getReports();
+      // Hide the delete button for this property
+      const btn = document.querySelector(
+        `button[onclick="deletePropertyOfReport(${propertyOfReportIdToDelete}, ${reportIdToAlter})"]`
+      );
+      if (btn) {
+        btn.closest("td").innerHTML = `<span class="text-muted">Deleted</span>`;
+      }
+
+      // Refresh reports and alter status
       alterReportStatus(reportIdToAlter, "reviewed");
       toastr.success("Property deleted successfully");
       console.log("Property deleted:", response);
 
-      // Close the modal and reset the property ID
+      // Close modal and reset vars
       const modal = bootstrap.Modal.getInstance(
         document.getElementById("deletePropertyOfReportModal")
       );
