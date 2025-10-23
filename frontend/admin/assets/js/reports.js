@@ -53,8 +53,9 @@ function checkAndHideDeletedProperties() {
 
   buttons.forEach((btn) => {
     const propertyId = btn.getAttribute("data-property-id");
-
-    if (propertyId === null) {
+    console.log(propertyId);
+    if (propertyId == "null") {
+      console.log("Property not found");
       btn.style.display = "none";
     }
     // RestClient.get(
