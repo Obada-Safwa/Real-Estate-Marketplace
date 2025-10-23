@@ -51,16 +51,17 @@ function confirmDeletePropertyOfReport() {
     `properties/${propertyOfReportIdToDelete}`,
     {},
     function (response) {
-      // Hide the delete button for this property
+      // Hide the delete icon for this property
       const btn = document.querySelector(
         `button[onclick="deletePropertyOfReport(${propertyOfReportIdToDelete}, ${reportIdToAlter})"]`
       );
       if (btn) {
-        btn.closest("td").innerHTML = `<span class="text-muted">Deleted</span>`;
+        btn.style.display = "none";
       }
 
-      // Refresh reports and alter status
+      // Update report status
       alterReportStatus(reportIdToAlter, "reviewed");
+
       toastr.success("Property deleted successfully");
       console.log("Property deleted:", response);
 
