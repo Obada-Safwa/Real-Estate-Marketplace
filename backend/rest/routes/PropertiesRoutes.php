@@ -143,7 +143,13 @@ Flight::route(
  * )
  */
 Flight::route("DELETE /properties/@id", function ($id) {
-    Flight::properties_service()->delete($id, "id");
+    $property = Flight::properties_service()->get_by_id($id, "id");
+    $user = Flight::get('user');
+    if ($user->id == $property->user_id || $user->role == "admin") {
+        Flight::properties_service()->delete($id, "id");
+    } else {
+        Flight::json(["error" => "Unauthorized"], 403);
+    }
 });
 
 /**
