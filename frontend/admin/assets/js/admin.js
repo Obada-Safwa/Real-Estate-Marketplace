@@ -56,6 +56,7 @@ $(document).ready(function () {
     view: "settings", // No # prefix in the route definition
     load: "settings.html",
     onCreate: function () {
+      getReports();
       console.log("Settings view created");
     },
     onReady: function () {
