@@ -158,6 +158,7 @@ function alterReportStatus(reportId, status) {
     `reports/${status}/${reportId}`,
     {},
     function (response) {
+      getReports();
       console.log("Report status altered:", response);
     },
     function (error) {
